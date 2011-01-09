@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+
+  Tools.xml                D-Modules package documentation
+
+         Copyright (C) 2010, Mohamed Barakat, University of Kaiserslautern
+
+-->
+
+<Chapter Label="Tools">
+<Heading>Tools</Heading>
+
+<Section Label="Tools:Operations and Functions">
+<Heading>Tools: Operations and Functions</Heading>
+
+<#Include Label="NumeratorOfDifferentialAction:der">
+<#Include Label="NumeratorOfDifferentialAction:ord">
+
+</Section>
+
+<!-- ############################################################ -->
+
+</Chapter>

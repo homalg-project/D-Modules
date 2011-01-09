@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  D-Modules.xml            D-Modules package documentation
+
+         Copyright (C) 2010, Mohamed Barakat, University of Kaiserslautern
+
+-->
+
+<Chapter Label="D-Modules">
+<Heading>D-Modules</Heading>
+
+<Section Label="D-Modules:Category">
+<Heading>D-Modules: Category and Representations</Heading>
+
+</Section>
+
+<Section Label="D-Modules:Constructors">
+<Heading>D-Modules: Constructors</Heading>
+
+</Section>
+
+<Section Label="D-Modules:Properties">
+<Heading>D-Modules: Properties</Heading>
+
+
+</Section>
+
+<Section Label="D-Modules:Attributes">
+<Heading>D-Modules: Attributes</Heading>
+
+<!-- the following attributes are intrinsic in the sense that
+     they can safely be attached to any copy of the sheaf -->
+
+</Section>
+
+<Section Label="D-Modules:Operations">
+<Heading>D-Modules: Operations and Functions</Heading>
+
+<#Include Label="CoefficientsOfAnnihilatingOperators">
+<#Include Label="AnnihilatingOperators">
+<#Include Label="BasisOfAnnihilatingOperators">
+
+</Section>
+<!-- ############################################################ -->
+
+</Chapter>
