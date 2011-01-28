@@ -49,8 +49,9 @@
   
 <Acknowledgements>
   I would like to thank Professor Bernard Malgrange for inspiring
-  discussions. The name of this package was suggested by Alban Quadrat
-  in an e-mail correspondence:
+  discussions. The notion InjectivePoints used at several places in
+  the package was suggested by Alban Quadrat in an e-mail
+  correspondence:
   <Q>
     Otherwise, I do not know if you cannot play with the concepts of
     "K-points" and "injective" (e.g., D-Modules).

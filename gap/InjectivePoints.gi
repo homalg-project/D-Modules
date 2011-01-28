@@ -423,7 +423,26 @@ InstallMethod( Display,
         [ IsSymbolicallyPresentedModuleRep ],
         
   function( M )
+    local mat, gen;
     
-    Display( GeneratorsOfModule( M ) );
+    gen := GeneratorsOfModule( M );
+    
+    mat := MatrixOfGenerators( gen );
+    
+    if IsBound( mat!.Relations ) then
+        
+        homalgDisplay( mat!.Relations );
+        
+        Print( "\nsolution subject to the above relations:\n\n" );
+        
+    fi;
+    
+    Display( gen );
+    
+    if IsBound( mat!.Relations ) then
+        
+        Print( "\n(solution subject to the above relations)\n" );
+        
+    fi;
     
 end );
