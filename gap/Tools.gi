@@ -52,7 +52,7 @@ InstallMethod( SolutionOfSystem,
         [ IsHomalgMatrix ],
         
   function( sys )
-    local R, RP, c, sol, rel, cas, solver;
+    local R, RP, c, sol, rel, solver;
     
     R := HomalgRing( sys );
     
@@ -75,20 +75,8 @@ InstallMethod( SolutionOfSystem,
         rel := sol!.Relations;
         Unbind( sol!.Relations );	## will bind it to the output matrix below
         
-        cas := homalgExternalCASystem( R );
-        
         solver := sol!.solver;
         
-        if IsBound( R!.SystemNotCompletelySolvable ) and
-           R!.SystemNotCompletelySolvable = "warn" then
-            Info( InfoWarning, 1, "\033[01;31;47m",
-                  cas, "'s ", solver,
-                  " was not able to solve the system completely",
-                  "\033[0m" );
-        else
-            Error( cas, "'s ", solver,
-                   " was not able to solve the system completely" );
-        fi;
     fi;
     
     sol := HomalgMatrix( sol, c, 1, R );

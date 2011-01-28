@@ -30,7 +30,7 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
             
             SolutionOfSystem :=
               function( sys )
-                local R, stream, v, solver, b, where, rel, r, u, sol;
+                local R, stream, v, solver, b, u, cas, where, list, rel, r, sol;
                 
                 if not IsBound( sys!.section_string ) then
                     Error( "missing string describing the section\n" );
@@ -47,25 +47,90 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
                 homalgSendBlocking( [ v, "sol := ", solver, "(map(op,convert(", sys, ",listlist)))" ],
                                                  "need_command", HOMALG_IO.Pictograms.SolutionOfSystem );
                 
-                b := homalgSendBlocking( [ "type(", v, "sol,set) or type(", v, "sol,`=`)" ],
+                ####
+                ## pdsolve( \
+                ## [[D[1](f1)(x,y,z)+1/3*f2(x,y,z)-1/9*x*f3(x,y,z)], [D[2](f2)(x,y,z)+1/6*f3(x,\
+                ##             y,z)], [D[1](f2)(x,y,z)-1/2*f3(x,y,z)], [D[3](f3)(x,y,z)], [D[2](f3)(x,y\
+                ##            ,z)], [D[1](f3)(x,y,z)]] )
+                ## ->
+                ## {f1(x,y,z) = -1/36*_C1*x^2+(-1/3*_F1(z)+1/18*_C1*y)*x+_F2(y,z), f2(x,y,z) = \
+                ##     _F1(z)+1/6*(3*x-y)*_C1, f3(x,y,z) = _C1}
+                
+                b := homalgSendBlocking( [ "type(", v, "sol,set(`=`)) or type(", v, "sol,`=`)" ],
                              "need_output", stream, HOMALG_IO.Pictograms.SolutionOfSystem );
                 
-                b := b = "false";        ## system was not solved completely
+                b := b = "false";        ## the system was not solved completely
+                
+                u := sys!.section_string;
                 
                 if b then
-                    where := homalgSendBlocking( [ "op(0,", v, ")=`&where`" ],
+                    cas := homalgExternalCASystem( R );
+                    
+                    if IsBound( R!.SystemNotCompletelySolvable ) and
+                       R!.SystemNotCompletelySolvable = "warn" then
+                        Info( InfoWarning, 1, "\033[01;31;47m",
+                              cas, "'s ", solver,
+                              " was not able to solve the system completely",
+                              "\033[0m" );
+                    else
+                        Error( cas, "'s ", solver,
+                               " was not able to solve the system completely" );
+                    fi;
+                    
+                    where := homalgSendBlocking( [ "evalb(op(0,", v, "sol)=`&where`)" ],
                                      "need_output", stream, HOMALG_IO.Pictograms.SolutionOfSystem );
                     if where = "true" then
                         homalgSendBlocking( [ v, "sol:=op(", v, "sol)" ],
                                 "need_command", stream, HOMALG_IO.Pictograms.SolutionOfSystem );
                     fi;
-                    rel := homalgSendBlocking( [ v, "sol[2]: ", v, "sol:=", v, "sol[1]" ],
-                                   stream, HOMALG_IO.Pictograms.SolutionOfSystem );
+                    
+                    list := homalgSendBlocking( [ "type(", v, "sol,list) and nops(", v, "sol)=1 and type(", v, "sol[1],list)" ],
+                                    "need_output", stream, HOMALG_IO.Pictograms.SolutionOfSystem );
+                    
+                    if list = "true" then
+                        
+                        ## ->
+                        ## [[diff(f1(x1,x2,x3,x4),x2) = (x1*x3*diff(f1(x1,x2,x3,x4),x4)-x2*x4*diff(f1(x\
+                        ##     1,x2,x3,x4),x4)+x2*x3*diff(f1(x1,x2,x3,x4),x3)-x1*x4*diff(f1(x1,x2,x3,x4\
+                        ##     ),x3))/(x3^2-x4^2), diff(f1(x1,x2,x3,x4),x1) = (x2*x3*diff(f1(x1,x2,x3,x\
+                        ##     4),x4)-x1*x4*diff(f1(x1,x2,x3,x4),x4)+x1*x3*diff(f1(x1,x2,x3,x4),x3)-x2*\
+                        ##     x4*diff(f1(x1,x2,x3,x4),x3))/(x3^2-x4^2)]]
+                        
+                        rel := homalgSendBlocking( [ v, "sol[1]: ", v, "sol:=[]" ],
+                                       stream, HOMALG_IO.Pictograms.SolutionOfSystem );
+                        
+                    else
+                        
+                        ####
+                        ## pdsolve( \
+                        ## [[3*D[2,3](f1)(x,y,z)-D[3,3](f1)(x,y,z)+D[1](f1)(x,y,z)+3*D[2](f1)(x,y,z)-D[\
+                        ##     3](f1)(x,y,z)+3*D[2,3](f2)(x,y,z)-D[3,3](f2)(x,y,z)], [D[1,3](f1)(x,y,z)\
+                        ##     +D[3,3](f1)(x,y,z)+D[3](f1)(x,y,z)+D[1,3](f2)(x,y,z)+D[3,3](f2)(x,y,z)],\
+                        ##      [D[1,2](f1)(x,y,z)], [D[3,3](f1)(x,y,z)-D[1](f1)(x,y,z)+D[3](f1)(x,y,z)\
+                        ##     +3*D[1,2](f2)(x,y,z)+D[3,3](f2)(x,y,z)], [D[1,1](f1)(x,y,z)], [-D[3,3](f\
+                        ##     1)(x,y,z)+D[1](f1)(x,y,z)-D[3](f1)(x,y,z)+3*D[1,1](f2)(x,y,z)-D[3,3](f2)\
+                        ##     (x,y,z)], [D[3,3,3](f1)(x,y,z)-D[1,3](f1)(x,y,z)+D[3,3](f1)(x,y,z)+D[3,3\
+                        ##     ,3](f2)(x,y,z)], [2*x*D[3,3](f1)(x,y,z)-2*x*D[1](f1)(x,y,z)+2*x*D[3](f1)\
+                        ##     (x,y,z)+3*D[1](f1)(x,y,z)+3*D[3](f1)(x,y,z)+3*f1(x,y,z)+2*x*D[3,3](f2)(x\
+                        ##     ,y,z)+3*D[1](f2)(x,y,z)+3*D[3](f2)(x,y,z)]]
+                        ## ->
+                        ## [{f1(x,y,z) = _F3(z)*x+_F2(y,z)}, [diff(f2(x,y,z),x) = -1/3*_F3(z)*x-2/3*dif\
+                        ##     f(diff(_F3(z),z),z)*x^2-2/3*x*diff(diff(f2(x,y,z),z),z)-2/3*x*diff(diff(\
+                        ##     _F2(y,z),z),z)-2/3*diff(_F3(z),z)*x^2-2/3*x*diff(_F2(y,z),z)-diff(_F3(z)\
+                        ##     ,z)*x-diff(f2(x,y,z),z)-diff(_F2(y,z),z)-_F2(y,z)-_F3(z), diff(diff(f2(x\
+                        ##     ,y,z),y),z) = -1/3*_F3(z)+1/3*diff(diff(_F3(z),z),z)*x-diff(diff(_F2(y,z\
+                        ##     ),y),z)-diff(_F2(y,z),y)+1/3*diff(diff(f2(x,y,z),z),z)+1/3*diff(diff(_F2\
+                        ##     (y,z),z),z)+1/3*diff(_F3(z),z)*x+1/3*diff(_F2(y,z),z), diff(diff(diff(f2\
+                        ##     (x,y,z),z),z),z) = diff(_F3(z),z)-diff(diff(diff(_F3(z),z),z),z)*x-diff(\
+                        ##     diff(diff(_F2(y,z),z),z),z)-diff(diff(_F3(z),z),z)*x-diff(diff(_F2(y,z),\
+                        ##     z),z)]]
+			
+                        rel := homalgSendBlocking( [ v, "sol[2]: ", v, "sol:=", v, "sol[1]" ],
+                                       stream, HOMALG_IO.Pictograms.SolutionOfSystem );
+                    fi;
                 fi;
                 
                 r := NrRows( sys!.section );
-                
-                u := sys!.section_string;
                 
                 sol := homalgSendBlocking( [ "matrix(", r,",1,subs(", v, "sol,", u, "))" ],
                                stream, HOMALG_IO.Pictograms.SolutionOfSystem );
