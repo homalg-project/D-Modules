@@ -48,6 +48,6 @@
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
-Read( "../f_pq.g" );
+Read( "../Reiffen.g" );
 
 BasisOfAnnihilatingOperators( 1, f, 2 );
