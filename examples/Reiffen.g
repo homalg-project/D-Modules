@@ -19,6 +19,6 @@ end;
 
 f := Reiffen( 4, 5 );
 
-g := Concatenation( "1/(", String(f), ")^s" );
+g := Concatenation( "1/(", String( f ), ")^s" );
 
 LoadPackage( "D-Modules" );

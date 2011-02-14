@@ -41,6 +41,7 @@
 <#Include Label="CoefficientsOfAnnihilatingOperators">
 <#Include Label="AnnihilatingOperators">
 <#Include Label="BasisOfAnnihilatingOperators">
+<#Include Label="OrderOfStability">
 
 </Section>
 <!-- ############################################################ -->

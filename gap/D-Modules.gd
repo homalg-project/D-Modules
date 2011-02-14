@@ -42,6 +42,12 @@ DeclareOperation( "Annihilator",
 DeclareOperation( "Annihilator",
         [ IsString, IsInt, IsHomalgRing ] );
 
+DeclareOperation( "OrderOfStability",
+        [ IsRingElement, IsRingElement ] );
+
+DeclareOperation( "OrderOfStability",
+        [ IsString, IsHomalgRing ] );
+
 ####################################
 #
 # synonyms:

@@ -188,3 +188,32 @@ InstallMethod( Annihilator,
     return LeftSubmodule( AnnihilatingOperators( f, order, A ) );
     
 end );
+
+##  <#GAPDoc Label="OrderOfStability">
+##  <ManSection>
+##    <Oper Arg="f,g" Name="OrderOfStability"/>
+##    <Description>
+##      <#Include Label="OrderOfStability:example">
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+InstallMethod( OrderOfStability,
+        "for two ring elements and an integer",
+        [ IsRingElement, IsRingElement ],
+        
+  function( f, g )
+    local L, o;
+    
+    L := List( [ 1, 2 ], o -> LeftSubmodule( AnnihilatingOperators( f, g, o ) ) );
+    
+    o := Length( L );
+    
+    while not IsSubset( L[o-1], L[o] ) do
+        o := o + 1;
+        Add( L, LeftSubmodule( AnnihilatingOperators( f, g, o ) ) );
+    od;
+    
+    return o - 1;
+    
+end );
+
