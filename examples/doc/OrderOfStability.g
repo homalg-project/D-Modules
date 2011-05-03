@@ -15,13 +15,15 @@
 ##  >    Error( "We want q >= p + 1 and p + 1 >= 5\n" );
 ##  > end;;
 ##  gap> f := p -> Reiffen( p, p+1 );;
-##  gap> List( [ 4 .. 8 ], p -> OrderOfStability( One( f(p) ), f(p) ) );
+##  gap> List( [ 4 .. 8 ], p -> OrderOfStability( 1, f(p) ) );
 ##  [ 2, 2, 3, 4, 4 ]
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
-Read( "../f_pq.g" );
+Read( "../Reiffen.g" );
 
 f := p -> Reiffen( p, p+1 );
 
-kappa := List( [ 4 .. 8 ], p -> OrderOfStability( One( f(p) ), f(p) ) );
+kappa := List( [ 4 .. 8 ], p -> OrderOfStability( 1, f(p) ) );
+
+Assert( 0, kappa = [ 2, 2, 3, 4, 4 ] );

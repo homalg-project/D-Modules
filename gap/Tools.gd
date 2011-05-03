@@ -28,3 +28,6 @@ DeclareOperation( "NumeratorOfDifferentialAction",
 DeclareOperation( "NumeratorOfDifferentialAction",
         [ IsString, IsInt, IsString, IsString, IsHomalgRing ] );
 
+DeclareOperation( "IntersectWithSubalgebra",
+        [ IsHomalgModule, IsHomalgRingElement ] );
+

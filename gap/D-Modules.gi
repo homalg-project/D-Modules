@@ -27,13 +27,13 @@ InstallMethod( CoefficientsOfAnnihilatingOperators,
         [ IsRingElement, IsRingElement, IsInt ],
         
   function( f, g, order )
-    local numerator, A;
+    local numerator, B;
     
     numerator := NumeratorOfDifferentialAction( f, g, order );
     
-    A := HomalgRing( numerator[1] );
+    B := HomalgRing( numerator[1] );
     
-    numerator := HomalgMatrix( numerator, Length( numerator ), 1, A );
+    numerator := HomalgMatrix( numerator, Length( numerator ), 1, B );
     
     return SyzygiesOfRows( numerator );
     
@@ -45,11 +45,13 @@ InstallMethod( CoefficientsOfAnnihilatingOperators,
         [ IsString, IsInt, IsHomalgRing ],
         
   function( f, order, A )
-    local numerator;
+    local numerator, B;
     
     numerator := NumeratorOfDifferentialAction( f, order, A );
     
-    numerator := HomalgMatrix( numerator, Length( numerator ), 1, A );
+    B := BaseRing( A );
+    
+    numerator := HomalgMatrix( numerator, Length( numerator ), 1, B );
     
     return SyzygiesOfRows( numerator );
     

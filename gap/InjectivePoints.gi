@@ -238,7 +238,11 @@ InstallMethod( AssociatedRingForInjectiveModules,
   function( R )
     local var, der, S, A;
     
-    var := IndeterminateCoordinatesOfRingOfDerivations( R );
+    if HasRelativeIndeterminateCoordinatesOfRingOfDerivations( R ) then
+        var := RelativeIndeterminateCoordinatesOfRingOfDerivations( R );
+    else
+        var := IndeterminateCoordinatesOfRingOfDerivations( R );
+    fi;
     der := IndeterminateDerivationsOfRingOfDerivations( R );
     
     var := List( var, Name );

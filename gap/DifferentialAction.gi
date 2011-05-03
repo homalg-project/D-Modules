@@ -16,7 +16,7 @@
 
 ##  <#GAPDoc Label="NumeratorOfDifferentialAction:der">
 ##  <ManSection>
-##    <Oper Arg="f,g,der" Name="NumeratorOfDifferentialAction"/>
+##    <Oper Arg="f,g,der" Name="NumeratorOfDifferentialAction" Label="given a list of variables"/>
 ##    <Description>
 ##      <#Include Label="NumeratorOfDifferentialAction:der_example">
 ##    </Description>
@@ -41,19 +41,17 @@ InstallMethod( NumeratorOfDifferentialAction,
         [ IsHomalgRingElement, IsRingElement, IsList ],
         
   function( f, g, der )
-    local A, f_g, var, ivar, R;
+    local A, B, ivar, R, f_g, var;
     
     A := HomalgRing( f );
     
-    f_g := Concatenation( "(", String( f ), ")/(",  String( g ), ")" );
+    B := BaseRing( A );
     
-    var := List( der, String );
-    
-    var := JoinStringsWithSeparator( var );
-    
-    var := Concatenation( "[", var, "]" );
-    
-    ivar := IndeterminateCoordinatesOfRingOfDerivations( A );
+    if HasRelativeIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        ivar := RelativeIndeterminateCoordinatesOfRingOfDerivations( A );
+    else
+        ivar := IndeterminateCoordinatesOfRingOfDerivations( A );
+    fi;
     
     ivar := List( ivar, String );
     
@@ -63,13 +61,21 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     R := AssociatedRingForInjectiveModules( A );
     
-    return NumeratorOfDifferentialAction( f_g, var, ivar, R ) / BaseRing( A );
+    f_g := Concatenation( "(", String( f ), ")/(",  String( g ), ")" );
+    
+    var := List( der, String );
+    
+    var := JoinStringsWithSeparator( var );
+    
+    var := Concatenation( "[", var, "]" );
+    
+    return NumeratorOfDifferentialAction( f_g, var, ivar, R ) / B;
     
 end );
 
 ##  <#GAPDoc Label="NumeratorOfDifferentialAction:ord">
 ##  <ManSection>
-##    <Oper Arg="f,g,der" Name="NumeratorOfDifferentialAction"/>
+##    <Oper Arg="f,g,der" Name="NumeratorOfDifferentialAction" Label="given an order"/>
 ##    <Description>
 ##      <#Include Label="NumeratorOfDifferentialAction:ord_example">
 ##    </Description>
@@ -94,11 +100,17 @@ InstallMethod( NumeratorOfDifferentialAction,
         [ IsHomalgRingElement, IsRingElement, IsInt ],
         
   function( f, g, order )
-    local A, ivar, monomials, gg;
+    local A, B, ivar, monomials, gg;
     
     A := HomalgRing( f );
     
-    ivar := IndeterminateCoordinatesOfRingOfDerivations( A );
+    B := BaseRing( A );
+    
+    if HasRelativeIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        ivar := RelativeIndeterminateCoordinatesOfRingOfDerivations( A );
+    else
+        ivar := IndeterminateCoordinatesOfRingOfDerivations( A );
+    fi;
     
     ivar := List( ivar, String );
     
@@ -118,9 +130,15 @@ InstallMethod( NumeratorOfDifferentialAction,
         [ IsString, IsInt, IsHomalgRing ],
         
   function( f, order, A )
-    local ivar, monomials, R, coeffs;
+    local B, ivar, R, coeffs;
     
-    ivar := IndeterminateCoordinatesOfRingOfDerivations( A );
+    B := BaseRing( A );
+    
+    if HasRelativeIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        ivar := RelativeIndeterminateCoordinatesOfRingOfDerivations( A );
+    else
+        ivar := IndeterminateCoordinatesOfRingOfDerivations( A );
+    fi;
     
     ivar := List( ivar, String );
     
@@ -134,7 +152,7 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     coeffs := SplitString( coeffs, "," );
     
-    return List( coeffs, c -> c / A );
+    return List( coeffs, c -> c / B );
     
 end );
 

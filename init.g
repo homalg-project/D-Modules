@@ -24,4 +24,7 @@ ReadPackage( "D-Modules", "gap/D-Modules.gd" );
 ReadPackage( "D-Modules", "gap/Tools.gd" );
 
 ##
+ReadPackage( "D-Modules", "gap/SingularTools.gd" );
+
+##
 ReadPackage( "D-Modules", "gap/MapleHomalgTools.gd" );

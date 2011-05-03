@@ -23,7 +23,7 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
                 
                 R := HomalgRing( M );
                 
-                return homalgSendBlocking( [ "`JanetOre/JApplyMatrix`(", M, u, R, "[1][1],", R, "[1][3])" ],
+                return homalgSendBlocking( [ "simplify(`JanetOre/JApplyMatrix`(", M, u, R, "[1][1],", R, "[1][3]))" ],
                                HOMALG_IO.Pictograms.ApplyToSection );
                 
               end,
@@ -191,7 +191,7 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
                 homalgSendBlocking( [ "if nops(", v, "res)<>1 then ERROR(`factors returned more than one relevant factor`) fi" ],
                         "need_command", stream, HOMALG_IO.Pictograms.NumeratorOfDifferentialAction );
                 
-                return homalgSendBlocking( [ "op(map(convert,[`jets/jcoeffs`(", v, "res[1],", v, "lvar)],symbol))" ],
+                return homalgSendBlocking( [ "op(map(convert,map(i->`jets/jcoeff`(", v, "res[1],i,", v, "lvar),", v, "lvar),symbol))" ],
                         "need_output", stream, HOMALG_IO.Pictograms.NumeratorOfDifferentialAction );
                 
               end,
@@ -200,4 +200,4 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
  );
 
 ## enrich the global homalg table for MapleHomalg:
-AddToAhomalgTable( CommonHomalgTableForMapleHomalgTools, D_ModulesHomalgTableForMapleHomalgTools );
+AppendToAhomalgTable( CommonHomalgTableForMapleHomalgTools, D_ModulesHomalgTableForMapleHomalgTools );

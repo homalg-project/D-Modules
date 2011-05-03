@@ -17,6 +17,7 @@
 HOMALG_IO.Pictograms.ApplyToSection := "sec";
 HOMALG_IO.Pictograms.SolutionOfSystem := "sol";
 HOMALG_IO.Pictograms.NumeratorOfDifferentialAction := "tot";
+HOMALG_IO.Pictograms.IntersectWithSubalgebra := "InS";
 
 ####################################
 #
@@ -129,6 +130,36 @@ InstallMethod( NumeratorOfDifferentialAction,
     tot := RP!.NumeratorOfDifferentialActionByOrder( section, order, arguments, multiplier, R );
     
     return tot;
+    
+end );
+
+##
+InstallMethod( IntersectWithSubalgebra,
+        "for a module and a homalg ring element",
+        [ IsFinitelyPresentedSubmoduleRep, IsHomalgRingElement ],
+        
+  function( I, s )
+    local R, RP, i, b;
+    
+    R := HomalgRing( I );
+    
+    RP := homalgTable( R );
+    
+    if not IsBound( RP!.IntersectWithSubalgebra ) then
+        Error( "could not find a procedure called IntersectWithSubalgebra in the homalgTable of the ring\n" );
+    fi;
+    
+    i := MatrixOfGenerators( I );
+    
+    if IsHomalgLeftObjectOrMorphismOfLeftObjects( I ) then
+        #i := BasisOfRows( i );
+    else
+        #i := BasisOfColumns( i );
+    fi;
+    
+    b := HomalgRingElement( RP!.IntersectWithSubalgebra( i, s ), R );
+    
+    return b;
     
 end );
 

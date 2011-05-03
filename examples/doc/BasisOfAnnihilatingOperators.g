@@ -13,7 +13,7 @@
 ##  gap> f := f / A2;           ## an element of the Weyl algebra
 ##  x*y^4+y^5+x^4
 ##  gap> BasisOfAnnihilatingOperators( 1, f, 1 );
-##  <A 4 x 1 matrix over an external ring>
+##  <A non-zero right regular 4 x 1 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, 
 ##    16*x*y^2*Dx+4*y^3*Dx+12*y^3*Dy-125*x*y*Dx-4*x^2*Dy+5*x*y*Dy-100*y^2*Dy+64*y^\
@@ -22,7 +22,7 @@
 ##  Dy-1024*y^3+15625*x*y*Dx+500*x^2*Dy-625*x*y*Dy+12500*y^2*Dy+62500*y, 
 ##    x*y^4*Dy+y^5*Dy+x^4*Dy+4*x*y^3+5*y^4 ]
 ##  gap> BasisOfAnnihilatingOperators( 1, f, 2 );
-##  <A 5 x 1 matrix over an external ring>
+##  <A non-zero right regular 5 x 1 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, 
 ##    16*x*y^2*Dx+4*y^3*Dx+12*y^3*Dy-125*x*y*Dx-4*x^2*Dy+5*x*y*Dy-100*y^2*Dy+64*y^\
@@ -34,7 +34,7 @@
 ##  Dy-1024*y^3+15625*x*y*Dx+500*x^2*Dy-625*x*y*Dy+12500*y^2*Dy+62500*y, 
 ##    x*y^4*Dy+y^5*Dy+x^4*Dy+4*x*y^3+5*y^4 ]
 ##  gap> BasisOfAnnihilatingOperators( 1, f, 3 );
-##  <A 5 x 1 matrix over an external ring>
+##  <A non-zero right regular 5 x 1 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, 
 ##    16*x*y^2*Dx+4*y^3*Dx+12*y^3*Dy-125*x*y*Dx-4*x^2*Dy+5*x*y*Dy-100*y^2*Dy+64*y^\
