@@ -3,7 +3,7 @@ all: doc test
 doc: doc/manual.six
 
 doc/manual.six: makedoc.g maketest.g ListOfDocFiles.g \
-		PackageInfo.g VERSION \
+		PackageInfo.g \
 		doc/D-Modules.bib doc/*.xml \
 		gap/*.gd gap/*.gi examples/*.g examples/doc/*.g
 	        gap makedoc.g

@@ -13,6 +13,8 @@ WriteBibXMLextFile( "doc/D-ModulesBib.xml", bib );
 
 Read( "ListOfDocFiles.g" );
 
+PrintTo( "VERSION", PackageInfo( "D-Modules" )[1].Version );
+
 MakeGAPDocDoc( "doc", "D-ModulesForHomalg", list, "D-ModulesForHomalg" );
 
 GAPDocManualLab("D-Modules");
