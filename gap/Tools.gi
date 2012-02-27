@@ -2,7 +2,7 @@
 ##
 ##  Tools.gi                                               D-Modules package
 ##
-##  Copyright 2010, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2010-2011, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Implementations of tool procedures.
 ##
@@ -163,3 +163,27 @@ InstallMethod( IntersectWithSubalgebra,
     
 end );
 
+##
+InstallMethod( IntersectWithSubalgebra,
+        "for a module and a string",
+        [ IsFinitelyPresentedSubmoduleRep, IsString ],
+        
+  function( I, s )
+    
+    return IntersectWithSubalgebra( I, s / HomalgRing( I ) );
+    
+end );
+
+##
+InstallMethod( IntersectWithSubalgebra,
+        "for a module and a string",
+        [ IsFinitelyPresentedSubmoduleRep, IsPolynomial ],
+        
+  function( I, s )
+    
+    s := IndeterminateName( FamilyObj( s ),
+                 IndeterminateNumberOfUnivariateRationalFunction( s ) );
+    
+    return IntersectWithSubalgebra( I, s );
+    
+end );

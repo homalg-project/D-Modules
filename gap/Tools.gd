@@ -2,7 +2,7 @@
 ##
 ##  Tools.gd                                               D-Modules package
 ##
-##  Copyright 2010, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2010-2011, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Declarations of tool procedures.
 ##
@@ -31,3 +31,8 @@ DeclareOperation( "NumeratorOfDifferentialAction",
 DeclareOperation( "IntersectWithSubalgebra",
         [ IsHomalgModule, IsHomalgRingElement ] );
 
+DeclareOperation( "IntersectWithSubalgebra",
+        [ IsHomalgModule, IsString ] );
+
+DeclareOperation( "IntersectWithSubalgebra",
+        [ IsHomalgModule, IsPolynomial ] );
