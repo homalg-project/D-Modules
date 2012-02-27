@@ -206,13 +206,13 @@ InstallMethod( OrderOfStability,
   function( f, g )
     local L, o;
     
-    L := List( [ 1, 2 ], o -> LeftSubmodule( AnnihilatingOperators( f, g, o ) ) );
+    L := List( [ 1, 2 ], o -> Annihilator( f, g, o ) );
     
     o := Length( L );
     
     while not IsSubset( L[o-1], L[o] ) do
         o := o + 1;
-        Add( L, LeftSubmodule( AnnihilatingOperators( f, g, o ) ) );
+        Add( L, Annihilator( f, g, o ) );
     od;
     
     return o - 1;
