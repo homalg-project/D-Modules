@@ -38,8 +38,6 @@ end;
 
 SetName( Ds, "Q[s][x,y,z]<Dx,Dy,Dz>" );
 
-s := "s" / Ds;
-
 x := "x" / Ds;
 y := "y" / Ds;
 z := "z" / Ds;
@@ -49,11 +47,12 @@ Dy := "Dy" / Ds;
 Dz := "Dz" / Ds;
 
 SetIsWeylRing( Ds, true );
+SetCenter( Ds, Qs );
 SetBaseRing( Ds, Qsxyz );
 SetCoefficientsRing( Ds, Qs );
 
-SetIndeterminateCoordinatesOfRingOfDerivations( Ds, [ s, x, y, z ] );
 SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y, z ] );
+ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
 SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx, Dy, Dz ] );
 
 f := x^2*y*z + x^2*z^2 - y^3*z - y^3;
@@ -72,11 +71,13 @@ sec := Concatenation( "[", g, "]" );
 
 sec := HomalgMatrix( sec, 1, 1, A );
 
-Ann := Annihilator( g, 2, Ds );
+Ann := Annihilator( g, 1, Ds );
 
 Dsf := LeftSubmodule( [ f ] );
 
 Annf := Ann + Dsf;
+
+s := Indeterminate( Rationals, "s" );
 
 ann := HomalgMatrix( "[ \
 x^2*y*Dy-y^3*Dy+2*x^2*z*Dy-x^2*z*Dz+3*y^2*z*Dz+3*y^2*Dz, \

@@ -1,16 +1,19 @@
 LoadPackage( "GradedRingForHomalg" );
 
 Qs := HomalgFieldOfRationalsInDefaultCAS( ) * "s";
-Qxy := Qs * "x,y";
-Ds := RingOfDerivations( Qxy, "Ds,Dx,Dy" );
-
-s := "s" / Ds;
+Qsxy := Qs * "x,y";
+Ds := RingOfDerivations( Qsxy, "Ds,Dx,Dy" );
 
 x := "x" / Ds;
 y := "y" / Ds;
 
 Dx := "Dx" / Ds;
 Dy := "Dy" / Ds;
+
+SetIsWeylRing( Ds, true );
+SetCenter( Ds, Qs );
+SetBaseRing( Ds, Qsxy );
+SetCoefficientsRing( Ds, Qs );
 
 SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y ] );
 ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
@@ -63,3 +66,5 @@ Ann := Annihilator( g, 3, Ds );
 Dsf := LeftSubmodule( [ f ] );
 
 Annf := Ann + Dsf;
+
+s := Indeterminate( Rationals, "s" );

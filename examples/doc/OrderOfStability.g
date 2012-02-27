@@ -1,6 +1,6 @@
 ##  <#GAPDoc Label="OrderOfStability:example">
 ##  <Example><![CDATA[
-##  gap> Qxy := HomalgFieldOfRationalsInDefaultCAS( "s" ) * "x,y";;
+##  gap> Qxy := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";;
 ##  gap> A2 := RingOfDerivations( Qxy, "Dx,Dy" );;
 ##  gap> var := IndeterminateCoordinatesOfRingOfDerivations( A2 );
 ##  [ x, y ]
