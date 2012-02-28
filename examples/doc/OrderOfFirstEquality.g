@@ -1,4 +1,4 @@
-##  <#GAPDoc Label="OrderOfStability:example">
+##  <#GAPDoc Label="OrderOfFirstEquality:example">
 ##  <Example><![CDATA[
 ##  gap> Qxy := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";;
 ##  gap> A2 := RingOfDerivations( Qxy, "Dx,Dy" );;
@@ -15,7 +15,7 @@
 ##  >    Error( "We want q >= p + 1 and p + 1 >= 5\n" );
 ##  > end;;
 ##  gap> f := p -> Reiffen( p, p+1 );;
-##  gap> List( [ 4 .. 8 ], p -> OrderOfStability( 1, f(p) ) );
+##  gap> List( [ 4 .. 8 ], p -> OrderOfFirstEquality( 1, f(p) ) );
 ##  [ 2, 2, 3, 4, 4 ]
 ##  ]]></Example>
 ##  <#/GAPDoc>
@@ -24,6 +24,6 @@ Read( "../Reiffen.g" );
 
 f := p -> Reiffen( p, p+1 );
 
-kappa := List( [ 4 .. 8 ], p -> OrderOfStability( 1, f(p) ) );
+kappa := List( [ 4 .. 8 ], p -> OrderOfFirstEquality( 1, f(p) ) );
 
 Assert( 0, kappa = [ 2, 2, 3, 4, 4 ] );

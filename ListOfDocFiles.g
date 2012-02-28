@@ -9,5 +9,5 @@ list := [
          "../examples/doc/CoefficientsOfAnnihilatingOperators.g",
          "../examples/doc/AnnihilatingOperators.g",
          "../examples/doc/BasisOfAnnihilatingOperators.g",
-         "../examples/doc/OrderOfStability.g",
+         "../examples/doc/OrderOfFirstEquality.g",
          ];

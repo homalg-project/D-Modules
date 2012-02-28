@@ -42,10 +42,10 @@ DeclareOperation( "Annihilator",
 DeclareOperation( "Annihilator",
         [ IsString, IsInt, IsHomalgRing ] );
 
-DeclareOperation( "OrderOfStability",
+DeclareOperation( "OrderOfFirstEquality",
         [ IsRingElement, IsRingElement ] );
 
-DeclareOperation( "OrderOfStability",
+DeclareOperation( "OrderOfFirstEquality",
         [ IsString, IsHomalgRing ] );
 
 ####################################

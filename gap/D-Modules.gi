@@ -191,15 +191,15 @@ InstallMethod( Annihilator,
     
 end );
 
-##  <#GAPDoc Label="OrderOfStability">
+##  <#GAPDoc Label="OrderOfFirstEquality">
 ##  <ManSection>
-##    <Oper Arg="f,g" Name="OrderOfStability"/>
+##    <Oper Arg="f,g" Name="OrderOfFirstEquality"/>
 ##    <Description>
-##      <#Include Label="OrderOfStability:example">
+##      <#Include Label="OrderOfFirstEquality:example">
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
-InstallMethod( OrderOfStability,
+InstallMethod( OrderOfFirstEquality,
         "for two ring elements and an integer",
         [ IsRingElement, IsRingElement ],
         
