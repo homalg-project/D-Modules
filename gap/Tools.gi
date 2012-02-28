@@ -94,9 +94,9 @@ end );
 ##
 InstallMethod( NumeratorOfDifferentialAction,
         "for strings",
-        [ IsString, IsString, IsString, IsHomalgRing ],
+        [ IsString, IsString, IsList, IsString, IsHomalgRing ],
         
-  function( section, monomial, arguments, R )
+  function( numer, denom, monomial, arguments, R )
     local RP, tot;
     
     RP := homalgTable( R );
@@ -105,7 +105,7 @@ InstallMethod( NumeratorOfDifferentialAction,
         Error( "could not find a procedure called NumeratorOfDifferentialAction in the homalgTable of the ring\n" );
     fi;
     
-    tot := RP!.NumeratorOfDifferentialAction( section, monomial, arguments, R );
+    tot := RP!.NumeratorOfDifferentialAction( numer, denom, monomial, arguments, R );
     
     tot := HomalgRingElement( tot, R );
     

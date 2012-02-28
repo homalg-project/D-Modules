@@ -2,7 +2,7 @@
 ##
 ##  DifferentialAction.gi                                  D-Modules package
 ##
-##  Copyright 2010, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2010-2012, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Implementations for differential actions.
 ##
@@ -61,15 +61,11 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     R := AssociatedRingForInjectiveModules( A );
     
-    f_g := Concatenation( "(", String( f ), ")/(",  String( g ), ")" );
+    g := Concatenation( "(",  String( g ), ")" );
     
-    var := List( der, String );
+    f := Concatenation( "(", String( f ), ")" );
     
-    var := JoinStringsWithSeparator( var );
-    
-    var := Concatenation( "[", var, "]" );
-    
-    return NumeratorOfDifferentialAction( f_g, var, ivar, R ) / B;
+    return NumeratorOfDifferentialAction( f, g, der, ivar, R ) / B;
     
 end );
 

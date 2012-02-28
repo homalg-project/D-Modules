@@ -23,7 +23,7 @@ DeclareOperation( "SolutionOfSystem",
         [ IsHomalgMatrix ] );
 
 DeclareOperation( "NumeratorOfDifferentialAction",
-        [ IsString, IsString, IsString, IsHomalgRing ] );
+        [ IsString, IsString, IsList, IsString, IsHomalgRing ] );
 
 DeclareOperation( "NumeratorOfDifferentialAction",
         [ IsString, IsInt, IsString, IsString, IsHomalgRing ] );

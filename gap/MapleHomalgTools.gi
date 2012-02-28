@@ -146,9 +146,20 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
               end,
             
             NumeratorOfDifferentialAction :=
-              function( section, monomial, arguments, R )
+              function( numer, denom, monomial, arguments, R )
+                local section, order;
                 
-                return homalgSendBlocking( [ "numer(`jets/totalder`(", section, ",", monomial, ",", arguments, "))" ],
+                section := Concatenation( numer, "/", denom );
+                
+                order := Length( monomial );
+                
+                monomial := List( monomial, String );
+                
+                monomial := JoinStringsWithSeparator( monomial );
+                
+                monomial := Concatenation( "[", monomial, "]" );
+                
+                return homalgSendBlocking( [ "normal((", denom, ")^", order + 1, "*`jets/totalder`(", section, ",", monomial, ",", arguments, "))" ],
                                  R, HOMALG_IO.Pictograms.NumeratorOfDifferentialAction );
                 
               end,

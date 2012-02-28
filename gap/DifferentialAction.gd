@@ -2,7 +2,7 @@
 ##
 ##  DifferentialAction.gd                                  D-Modules package
 ##
-##  Copyright 2010, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2010-2012, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Declarations for differential actions.
 ##
