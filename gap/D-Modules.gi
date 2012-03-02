@@ -2,11 +2,38 @@
 ##
 ##  D-Modules.gi                                           D-Modules package
 ##
-##  Copyright 2010, Mohamed Barakat, University of Kaiserslautern
+##  Copyright 2010 - 2012, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Implementations for D-modules.
 ##
 #############################################################################
+
+####################################
+#
+# methods for attributes:
+#
+####################################
+
+##
+InstallMethod( AssociatedOrderFilteredRing,
+        "for homalg Weyl rings",
+        [ IsHomalgRing and IsWeylRing ],
+        
+  function( A )
+    local R, der, n;
+    
+    R := BaseRing( A );
+    der := IndeterminateDerivationsOfRingOfDerivations( A );
+    der := List( der, String );
+    
+    n := Length( der );
+    
+    return RingOfDerivations(
+                   R, der,
+                   Concatenation( [ ListWithIdenticalEntries( n, 0 ),
+                     ListWithIdenticalEntries( n, 1 ) ] ) );
+    
+end );
 
 ####################################
 #
@@ -219,3 +246,34 @@ InstallMethod( OrderOfFirstEquality,
     
 end );
 
+##
+InstallMethod( AssociatedOrderGradedModule,
+        "for a homalg module",
+        [ IsFinitelyPresentedModuleRep ],
+        
+  function( M )
+    local A, R;
+    
+    A := HomalgRing( M );
+    
+    R := AssociatedOrderFilteredRing( A );
+    
+    return AssociatedGradedModule( R * M );
+    
+end );
+
+##
+InstallMethod( AssociatedOrderGradedModule,
+        "for a homalg submodule",
+        [ IsFinitelyPresentedSubmoduleRep ],
+        
+  function( J )
+    local A, R;
+    
+    A := HomalgRing( J );
+    
+    R := AssociatedOrderFilteredRing( A );
+    
+    return AssociatedGradedModule( R * J );
+    
+end );
