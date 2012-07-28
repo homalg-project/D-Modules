@@ -27,7 +27,7 @@ Subtitle := "A homalg based Package for D-Modules",
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
-Version := "2012.06.20",
+Version := "2012.06.28",
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
 
@@ -250,7 +250,7 @@ Dependencies := rec(
                 [ "MatricesForHomalg", ">= 2011.06.29" ],
                 [ "HomalgToCAS", ">= 2011.06.29" ],
                 [ "RingsForHomalg", ">= 2012.02.29" ],
-                #[ "Modules", ">= 2012.02.29" ],	## causes loading errors in GAP 4.4.12, will disappear in GAP 4.5
+                #[ "Modules", ">= 2012.06.28" ],	## causes loading errors in GAP 4.4.12, will disappear in GAP 4.5
                 [ "GradedModules", ">= 2011.06.29" ],
                 [ "GAPDoc", ">= 1.0" ] ],
   # without these the package will issue a warning while loading
