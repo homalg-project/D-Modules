@@ -110,7 +110,7 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     ivar := List( ivar, String );
     
-    monomials := List( [ 0 .. order ], o -> UnorderedTuples( ivar, o ) );
+    monomials := List( [ 0 .. order ], o -> UnorderedTuplesRespectingOrder( ivar, o ) );
     
     monomials := Concatenation( monomials );
     

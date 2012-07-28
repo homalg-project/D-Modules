@@ -16,6 +16,9 @@
 
 # basic operations:
 
+DeclareOperation( "UnorderedTuplesRespectingOrder",
+        [ IsList, IsInt ] );
+
 DeclareOperation( "ApplyToSection",
         [ IsHomalgMatrix, IsHomalgMatrix ] );
 

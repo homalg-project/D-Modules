@@ -119,7 +119,7 @@ InstallMethod( AnnihilatingOperators,
     
     dvar := List( dvar, String );
     
-    monomials := List( [ 0 .. order ], o -> UnorderedTuples( dvar, o ) );
+    monomials := List( [ 0 .. order ], o -> UnorderedTuplesRespectingOrder( dvar, o ) );
     
     monomials := Concatenation( monomials );
     
@@ -147,7 +147,7 @@ InstallMethod( AnnihilatingOperators,
     
     dvar := List( dvar, String );
     
-    monomials := List( [ 0 .. order ], o -> UnorderedTuples( dvar, o ) );
+    monomials := List( [ 0 .. order ], o -> UnorderedTuplesRespectingOrder( dvar, o ) );
     
     monomials := Concatenation( monomials );
     

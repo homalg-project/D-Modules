@@ -26,6 +26,32 @@ HOMALG_IO.Pictograms.IntersectWithSubalgebra := "InS";
 ####################################
 
 ##
+InstallMethod( UnorderedTuplesRespectingOrder,
+        "for a list",
+        [ IsList, IsInt ],
+        
+  function( L, o )
+    local l, M;
+    
+    if o <= 0 then
+        return [ [ ] ];
+    elif o = 1 then
+        return List( L, a -> [ a ] );
+    fi;
+    
+    l := Length( L );
+    
+    M := List( [ 1 .. l ],
+               i -> UnorderedTuplesRespectingOrder( L{[ i .. l ]}, o - 1 ) );
+    
+    M := List( [ 1 .. l ],
+               i -> List( M[i], r -> Concatenation( [ L[i] ], r ) ) );
+    
+    return Concatenation( M );
+    
+end );
+
+##
 InstallMethod( ApplyToSection,
         "for two homalg matrices",
         [ IsHomalgMatrix, IsHomalgMatrix ],
