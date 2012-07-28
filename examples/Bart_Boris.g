@@ -1,8 +1,13 @@
+## Wim Veys in Lahore 2011: Claim by Bart Bories (paper on arXiv):
+## f = x*y^5+x^3*y^2+x^4*y has b-function with root -6/13;
+## this -6/13 is NOT a pole of the topological zeta function
+## assoicated to f and a diff. form w = g dx dy
+
 LoadPackage( "GradedRingForHomalg" );
 
 Qs := HomalgFieldOfRationalsInDefaultCAS( ) * "s";
-Qsxy := Qs * "x,y";
-Ds := RingOfDerivations( Qsxy, "Ds,Dx,Dy" );
+Qxy := Qs * "x,y";
+Ds := RingOfDerivations( Qxy, "Ds,Dx,Dy" );
 
 x := "x" / Ds;
 y := "y" / Ds;
@@ -10,22 +15,13 @@ y := "y" / Ds;
 Dx := "Dx" / Ds;
 Dy := "Dy" / Ds;
 
-SetIsWeylRing( Ds, true );
-SetCenter( Ds, Qs );
-SetBaseRing( Ds, Qsxy );
-SetCoefficientsRing( Ds, Qs );
-
 SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y ] );
 ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
 SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx, Dy ] );
 
-f_pq := "x^p + y*y^(q-1) + x*y^(q-1)";
+f := x*y^5+x^3*y^2+x^4*y;
 
-PlaneCurve := function( p, q, r, t )
-    return ( x^p + y^q + x^r * y^t ) / Ds;
-end;
-
-f := PlaneCurve( 2, 3, 4, 5 );
+f_1 := Concatenation( "(", String( f ), ")^(-1)" );
 
 g := Concatenation( "(", String( f ), ")^s" );
 
@@ -39,7 +35,7 @@ sec := Concatenation( "[", g, "]" );
 
 sec := HomalgMatrix( sec, 1, 1, A );
 
-Ann := Annihilator( g, 1, Ds );
+Ann := Annihilator( g, 2, Ds );
 
 Dsf := LeftSubmodule( [ f ] );
 
@@ -52,4 +48,7 @@ b := IntersectWithSubalgebra( Annf, s );
 factors := Collected( Factors( b ) );
 
 Assert( 0, factors =
-        [ [ s+5/6, 1 ], [ s+1, 1 ], [ s+7/6, 1 ] ] );
+        [ [ s+5/13, 1 ], [ s+2/5, 1 ], [ s+6/13, 1 ], [ s+7/13, 1 ],
+          [ s+3/5, 1 ], [ s+8/13, 1 ], [ s+9/13, 1 ], [ s+10/13, 1 ],
+          [ s+4/5, 1 ], [ s+11/13, 1 ], [ s+12/13, 1 ], [ s+1, 2 ],
+          [ s+14/13, 1 ], [ s+15/13, 1 ], [ s+6/5, 1 ], [ s+16/13, 1 ], [ s+17/13, 1 ] ] );

@@ -1,8 +1,8 @@
 LoadPackage( "GradedRingForHomalg" );
 
 Qs := HomalgFieldOfRationalsInDefaultCAS( ) * "s";
-Qsxy := Qs * "x,y";
-Ds := RingOfDerivations( Qsxy, "Ds,Dx,Dy" );
+Qxy := Qs * "x,y";
+Ds := RingOfDerivations( Qxy, "Ds,Dx,Dy" );
 
 x := "x" / Ds;
 y := "y" / Ds;
@@ -10,22 +10,13 @@ y := "y" / Ds;
 Dx := "Dx" / Ds;
 Dy := "Dy" / Ds;
 
-SetIsWeylRing( Ds, true );
-SetCenter( Ds, Qs );
-SetBaseRing( Ds, Qsxy );
-SetCoefficientsRing( Ds, Qs );
-
 SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y ] );
 ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
 SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx, Dy ] );
 
-f_pq := "x^p + y*y^(q-1) + x*y^(q-1)";
+f := y^2-x^3;
 
-PlaneCurve := function( p, q, r, t )
-    return ( x^p + y^q + x^r * y^t ) / Ds;
-end;
-
-f := PlaneCurve( 2, 3, 4, 5 );
+f_1 := Concatenation( "(", String( f ), ")^(-1)" );
 
 g := Concatenation( "(", String( f ), ")^s" );
 
@@ -44,6 +35,8 @@ Ann := Annihilator( g, 1, Ds );
 Dsf := LeftSubmodule( [ f ] );
 
 Annf := Ann + Dsf;
+
+I := LeftSubmodule( "(y^2-x^3)*Dx-s*(-3*x^2),(y^2-x^3)*Dy-s*(2*y)", Ds );
 
 s := Indeterminate( Rationals, "s" );
 

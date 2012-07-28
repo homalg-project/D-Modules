@@ -68,3 +68,10 @@ Dsf := LeftSubmodule( [ f ] );
 Annf := Ann + Dsf;
 
 s := Indeterminate( Rationals, "s" );
+
+#b := IntersectWithSubalgebra( Annf, s );
+
+#factors := Collected( Factors( b ) );
+
+#Assert( 0, factors =
+#        [  ] );

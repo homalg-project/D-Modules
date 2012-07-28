@@ -1,14 +1,14 @@
 LoadPackage( "GradedRingForHomalg" );
 
 Qs := HomalgFieldOfRationalsInDefaultCAS( ) * "s";
-Qsxyz := Qs * "x,y,z";
+Qsx := Qs * "x";
 
-rp := homalgSendBlocking( "0,(s,x,y,z,Dx,Dy,Dz),(dp(1),dp)", [ "ring" ], Qs, HOMALG_IO.Pictograms.initialize );
+rp := homalgSendBlocking( "0,(s,x,Dx),(dp(1),dp)", [ "ring" ], Qs, HOMALG_IO.Pictograms.initialize );
 
 homalgSendBlocking( "option(redSB)", "need_command", rp, HOMALG_IO.Pictograms.initialize );
 homalgSendBlocking( "option(redTail)", "need_command", rp, HOMALG_IO.Pictograms.initialize );
-homalgSendBlocking( "matrix @M[7][7]", "need_command", rp, HOMALG_IO.Pictograms.initialize );
-homalgSendBlocking( "@M[2,5] = 1; @M[3,6] = 1; @M[4,7] = 1", "need_command", rp, HOMALG_IO.Pictograms.initialize );
+homalgSendBlocking( "matrix @M[3][3]", "need_command", rp, HOMALG_IO.Pictograms.initialize );
+homalgSendBlocking( "@M[2,3] = 1", "need_command", rp, HOMALG_IO.Pictograms.initialize );
 ext_obj := homalgSendBlocking( "nc_algebra(1,@M)", [ "def" ], TheTypeHomalgExternalRingObjectInSingular, rp, HOMALG_IO.Pictograms.CreateHomalgRing );
 Ds := CreateHomalgExternalRing( ext_obj, TheTypeHomalgExternalRingInSingular );
 _Singular_SetRing( Ds );
@@ -21,7 +21,7 @@ RP!.SetInvolution :=
   function( R )
     homalgSendBlocking( Concatenation(
             [ "\nproc Involution (matrix M)\n{\n" ],
-            [ "  map F = ", R, ", s, x, y, z, -Dx, -Dy, -Dz" ],
+            [ "  map F = ", R, ", s, x, -Dx" ],
             [ ";\n  return( transpose( involution( M, F ) ) );\n}\n\n" ]
             ), "need_command", HOMALG_IO.Pictograms.define );
 end;
@@ -36,26 +36,21 @@ RP!.Compose :=
     
 end;
 
-SetName( Ds, "Q[s][x,y,z]<Dx,Dy,Dz>" );
+SetName( Ds, "Q[s][x]<Dx>" );
 
 x := "x" / Ds;
-y := "y" / Ds;
-z := "z" / Ds;
 
 Dx := "Dx" / Ds;
-Dy := "Dy" / Ds;
-Dz := "Dz" / Ds;
 
 SetIsWeylRing( Ds, true );
 SetCenter( Ds, Qs );
-SetBaseRing( Ds, Qsxyz );
+SetBaseRing( Ds, Qsx );
 SetCoefficientsRing( Ds, Qs );
 
-SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y, z ] );
-ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
-SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx, Dy, Dz ] );
+SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x ] );
+SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx ] );
 
-f := x^2*y*z + x^2*z^2 - y^3*z - y^3;
+f := x;
 
 f := f / Ds;
 
@@ -71,7 +66,7 @@ sec := Concatenation( "[", g, "]" );
 
 sec := HomalgMatrix( sec, 1, 1, A );
 
-Ann := Annihilator( g, 1, Ds );
+Ann := Annihilator( g, 2, Ds );
 
 Dsf := LeftSubmodule( [ f ] );
 
@@ -84,6 +79,4 @@ b := IntersectWithSubalgebra( Annf, s );
 factors := Collected( Factors( b ) );
 
 Assert( 0, factors =
-        [ [ s+5/6, 2 ], [ s+1, 3 ], [ s+7/6, 2 ], [ s+4/3, 1 ], [ s+3/2, 1 ], [ s+5/3, 1 ] ] );
-
-#Read( ".Geisha_rest.g" );
+        [ [ s+1, 1 ] ] );
