@@ -19,5 +19,5 @@ MakeGAPDocDoc( "doc", "D-ModulesForHomalg", list, "D-ModulesForHomalg" );
 
 GAPDocManualLab("D-Modules");
 
-quit;
+QUIT;
 
