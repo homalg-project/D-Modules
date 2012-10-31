@@ -218,6 +218,45 @@ InstallMethod( Annihilator,
     
 end );
 
+##
+InstallMethod( AnnihilatorOfPower,
+        "for a ring element, an object, and an integer",
+        [ IsRingElement, IsObject, IsInt ],
+        
+  function( f, power, order )
+    local R, k, ks, A;
+    
+    R := HomalgRing( f );
+    
+    if HasIsWeylRing( R ) and IsWeylRing( R ) and HasBaseRing( R ) then
+        R := BaseRing( R );
+    elif not ( HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) and
+            HasIndeterminatesOfPolynomialRing( R ) ) then
+        Error( "the ring element is not defined over a polynomial ring\n" );
+    fi;
+    
+    if IsChar( power ) then
+        power := [ power ];
+        ConvertToStringRep( power );	## just to be sure
+    fi;
+    
+    if IsString( power ) then
+        if not IsBound( R!.(power) ) then
+            k := CoefficientsRing( R );
+            ks := k * power;
+            R!.(power) := ks * IndeterminatesOfPolynomialRing( R );
+        fi;
+        R := R!.(power);
+    fi;
+    
+    A := RingOfDerivations( R );
+    
+    f := Concatenation( "(", String( f ), ")^(", String( power ), ")" );
+    
+    return Annihilator( f, order, A );
+    
+end );
+
 ##  <#GAPDoc Label="OrderOfFirstEquality">
 ##  <ManSection>
 ##    <Oper Arg="f,g" Name="OrderOfFirstEquality"/>

@@ -5,39 +5,20 @@
 
 LoadPackage( "GradedRingForHomalg" );
 
-Qs := HomalgFieldOfRationalsInDefaultCAS( ) * "s";
-Qxy := Qs * "x,y";
-Ds := RingOfDerivations( Qxy, "Ds,Dx,Dy" );
+Q := HomalgFieldOfRationalsInDefaultCAS( );
+R := Q * "x,y";
 
-x := "x" / Ds;
-y := "y" / Ds;
-
-Dx := "Dx" / Ds;
-Dy := "Dy" / Ds;
-
-SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y ] );
-ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
-SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx, Dy ] );
+ExportIndeterminates( R );
 
 f := x*y^5+x^3*y^2+x^4*y;
 
-f_1 := Concatenation( "(", String( f ), ")^(-1)" );
-
-g := Concatenation( "(", String( f ), ")^s" );
-
 LoadPackage( "D-Modules" );
 
-F := InjectiveLeftModule( Ds );
+Ann := AnnihilatorOfPower( f, "s", 2 );
 
-A := HomalgRing( MatrixOfGenerators( F ) );
+Ds := HomalgRing( Ann );
 
-sec := Concatenation( "[", g, "]" );
-
-sec := HomalgMatrix( sec, 1, 1, A );
-
-Ann := Annihilator( g, 2, Ds );
-
-Dsf := LeftSubmodule( [ f ] );
+Dsf := LeftSubmodule( f / Ds );
 
 Annf := Ann + Dsf;
 
@@ -52,3 +33,15 @@ Assert( 0, factors =
           [ s+3/5, 1 ], [ s+8/13, 1 ], [ s+9/13, 1 ], [ s+10/13, 1 ],
           [ s+4/5, 1 ], [ s+11/13, 1 ], [ s+12/13, 1 ], [ s+1, 2 ],
           [ s+14/13, 1 ], [ s+15/13, 1 ], [ s+6/5, 1 ], [ s+16/13, 1 ], [ s+17/13, 1 ] ] );
+
+F := InjectiveLeftModule( Ds );
+
+A := HomalgRing( MatrixOfGenerators( F ) );
+
+g := Concatenation( "(", String( f ), ")^s" );
+
+sec := Concatenation( "[", g, "]" );
+
+sec := HomalgMatrix( sec, 1, 1, A );
+
+D := Divisor( f );

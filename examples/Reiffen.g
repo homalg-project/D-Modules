@@ -1,36 +1,46 @@
 LoadPackage( "GradedRingForHomalg" );
 
-Qs := HomalgFieldOfRationalsInDefaultCAS( ) * "s";
-Qsxy := Qs * "x,y";
-Ds := RingOfDerivations( Qsxy, "Ds,Dx,Dy" );
+Q := HomalgFieldOfRationalsInDefaultCAS( );
+R := Q * "x,y";
 
-x := "x" / Ds;
-y := "y" / Ds;
-
-Dx := "Dx" / Ds;
-Dy := "Dy" / Ds;
-
-SetIsWeylRing( Ds, true );
-SetCenter( Ds, Qs );
-SetBaseRing( Ds, Qsxy );
-SetCoefficientsRing( Ds, Qs );
-
-SetRelativeIndeterminateCoordinatesOfRingOfDerivations( Ds, [ x, y ] );
-ResetFilterObj( Ds, IndeterminateDerivationsOfRingOfDerivations );
-SetIndeterminateDerivationsOfRingOfDerivations( Ds, [ Dx, Dy ] );
+ExportIndeterminates( R );
 
 f_pq := "x^p + y*y^(q-1) + x*y^(q-1)";
 
 Reiffen := function( p, q )
     if q >= p + 1 and p + 1 >= 5 then
-        return ( x^p + y*y^(q-1) + x*y^(q-1) ) / Ds;
+        return ( x^p + y*y^(q-1) + x*y^(q-1) );
     fi;
     Error( "We want q >= p + 1 and p + 1 >= 5\n" );
 end;
 
 f := Reiffen( 6, 7 );
 
-g := Concatenation( "(", String( f ), ")^s" );
+LoadPackage( "D-Modules" );
+
+Ann := AnnihilatorOfPower( f, "s", 3 );
+
+Ds := HomalgRing( Ann );
+
+Dsf := LeftSubmodule( f / Ds );
+
+Annf := Ann + Dsf;
+
+s := Indeterminate( Rationals, "s" );
+
+b := IntersectWithSubalgebra( Annf, s );
+
+factors := Collected( Factors( b ) );
+
+Assert( 0, factors =
+        [ [ s+13/42, 1 ], [ s+5/14, 1 ], [ s+8/21, 1 ], [ s+17/42, 1 ],
+          [ s+19/42, 1 ], [ s+10/21, 1 ], [ s+11/21, 1 ], [ s+23/42, 1 ],
+          [ s+25/42, 1 ], [ s+13/21, 1 ], [ s+9/14, 1 ], [ s+29/42, 1 ],
+          [ s+31/42, 1 ], [ s+16/21, 1 ], [ s+11/14, 1 ], [ s+17/21, 1 ],
+          [ s+37/42, 1 ], [ s+19/21, 1 ], [ s+13/14, 1 ], [ s+20/21, 1 ],
+          [ s+41/42, 1 ], [ s+1, 1 ], [ s+43/42, 1 ], [ s+22/21, 1 ],
+          [ s+15/14, 1 ], [ s+23/21, 1 ], [ s+47/42, 1 ], [ s+25/21, 1 ],
+          [ s+17/14, 1 ], [ s+26/21, 1 ], [ s+53/42, 1 ] ] );
 
 I := HomalgMatrix( "[ \
 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, \
@@ -43,16 +53,6 @@ J := HomalgMatrix( "[ \
 (5*y^4+4*y^3*x)+(x^4+y^5+x*y^4)*Dy \
 ]", 2, 1, Ds );
 
-LoadPackage( "D-Modules" );
-
-F := InjectiveLeftModule( Ds );
-
-A := HomalgRing( MatrixOfGenerators( F ) );
-
-sec := Concatenation( "[", g, "]" );
-
-sec := HomalgMatrix( sec, 1, 1, A );
-
 I := LeftSubmodule( I );
 
 M := FactorObject( I );
@@ -61,17 +61,12 @@ J := LeftSubmodule( J );
 
 N := FactorObject( J );
 
-Ann := Annihilator( g, 3, Ds );
+F := InjectiveLeftModule( Ds );
 
-Dsf := LeftSubmodule( [ f ] );
+A := HomalgRing( MatrixOfGenerators( F ) );
 
-Annf := Ann + Dsf;
+g := Concatenation( "(", String( f ), ")^s" );
 
-s := Indeterminate( Rationals, "s" );
+sec := Concatenation( "[", g, "]" );
 
-#b := IntersectWithSubalgebra( Annf, s );
-
-#factors := Collected( Factors( b ) );
-
-#Assert( 0, factors =
-#        [  ] );
+sec := HomalgMatrix( sec, 1, 1, A );
