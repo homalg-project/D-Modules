@@ -1,16 +1,10 @@
 ##  <#GAPDoc Label="BasisOfAnnihilatingOperators:example">
 ##  <Example><![CDATA[
-##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";;
-##  gap> A2 := RingOfDerivations( R, "Dx,Dy" );;
-##  gap> var := IndeterminateCoordinatesOfRingOfDerivations( A2 );
+##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
+##  Q[x,y]
+##  gap> ExportIndeterminates( R );
 ##  [ x, y ]
-##  gap> x := var[1];
-##  x
-##  gap> y := var[2];
-##  y
-##  gap> f := x^4+y^5+x*y^4;    ## an element of the commutative base ring
-##  x*y^4+y^5+x^4
-##  gap> f := f / A2;           ## an element of the Weyl algebra
+##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
 ##  gap> BasisOfAnnihilatingOperators( 1, f, 1 );
 ##  <A non-zero right regular 4 x 1 matrix over an external ring>

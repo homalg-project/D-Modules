@@ -1,16 +1,10 @@
 ##  <#GAPDoc Label="NumeratorOfDifferentialAction:der_example">
 ##  <Example><![CDATA[
-##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";;
-##  gap> A2 := RingOfDerivations( R, "Dx,Dy" );;
-##  gap> var := IndeterminateCoordinatesOfRingOfDerivations( A2 );
+##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
+##  Q[x,y]
+##  gap> ExportIndeterminates( R );
 ##  [ x, y ]
-##  gap> x := var[1];
-##  x
-##  gap> y := var[2];
-##  y
-##  gap> f := x^4+y^5+x*y^4;    ## an element of the commutative base ring
-##  x*y^4+y^5+x^4
-##  gap> f := f / A2;           ## an element of the Weyl algebra
+##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
 ##  gap> NumeratorOfDifferentialAction( 1, f, [ ] );
 ##  1
@@ -29,17 +23,11 @@
 
 ##  <#GAPDoc Label="NumeratorOfDifferentialAction:ord_example">
 ##  <Example><![CDATA[
-##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";;
-##  gap> A2 := RingOfDerivations( R, "Dx,Dy" );;
-##  gap> var := IndeterminateCoordinatesOfRingOfDerivations( A2 );
+##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
+##  Q[x,y]
+##  gap> ExportIndeterminates( R );
 ##  [ x, y ]
-##  gap> x := var[1];
-##  x
-##  gap> y := var[2];
-##  y
-##  gap> f := x^4+y^5+x*y^4;    ## an element of the commutative base ring
-##  x*y^4+y^5+x^4
-##  gap> f := f / A2;           ## an element of the Weyl algebra
+##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
 ##  gap> NumeratorOfDifferentialAction( 1, f, 2 );
 ##  [ x^2*y^8+2*x*y^9+y^10+2*x^5*y^4+2*x^4*y^5+x^8, 

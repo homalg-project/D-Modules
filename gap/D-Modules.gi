@@ -101,6 +101,11 @@ InstallMethod( AnnihilatingOperators,
     
     A := HomalgRing( g );
     
+    if not HasIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        A := RingOfDerivations( A );
+        g := g / A;
+    fi;
+    
     return AnnihilatingOperators( f / A, g, order );
     
 end );
@@ -114,6 +119,11 @@ InstallMethod( AnnihilatingOperators,
     local A, dvar, monomials, coeffs;
     
     A := HomalgRing( f );
+    
+    if not HasIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        A := RingOfDerivations( A );
+        f := f / A;
+    fi;
     
     dvar := IndeterminateDerivationsOfRingOfDerivations( A );
     

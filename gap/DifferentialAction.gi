@@ -31,6 +31,11 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     A := HomalgRing( g );
     
+    if not HasIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        A := RingOfDerivations( A );
+        g := g / A;
+    fi;
+    
     return NumeratorOfDifferentialAction( f / A, g, der );
     
 end );
@@ -44,6 +49,11 @@ InstallMethod( NumeratorOfDifferentialAction,
     local A, B, ivar, R, f_g, var;
     
     A := HomalgRing( f );
+    
+    if not HasIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        A := RingOfDerivations( A );
+        f := f / A;
+    fi;
     
     B := BaseRing( A );
     
@@ -99,6 +109,11 @@ InstallMethod( NumeratorOfDifferentialAction,
     local A, B, ivar, monomials, gg;
     
     A := HomalgRing( f );
+    
+    if not HasIndeterminateCoordinatesOfRingOfDerivations( A ) then
+        A := RingOfDerivations( A );
+        f := f / A;
+    fi;
     
     B := BaseRing( A );
     
