@@ -20,7 +20,7 @@
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
-Read( "../Reiffen.g" );
+Read( "../Reiffen_data.g" );
 
 f := p -> Reiffen( p, p+1 );
 

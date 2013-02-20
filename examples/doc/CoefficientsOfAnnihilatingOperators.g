@@ -27,6 +27,6 @@
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
-Read( "../Reiffen.g" );
+Read( "../Reiffen_data.g" );
 
 CoefficientsOfAnnihilatingOperators( 1, f, 2 );

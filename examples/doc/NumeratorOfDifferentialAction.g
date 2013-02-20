@@ -50,7 +50,7 @@
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
-Read( "../Reiffen.g" );
+Read( "../Reiffen_data.g" );
 
 NumeratorOfDifferentialAction( 1, f, [ ] );
 NumeratorOfDifferentialAction( 1, f, [ x ] );

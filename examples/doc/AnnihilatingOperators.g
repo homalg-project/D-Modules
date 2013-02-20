@@ -31,6 +31,6 @@
 ##  ]]></Example>
 ##  <#/GAPDoc>
 
-Read( "../Reiffen.g" );
+Read( "../Reiffen_data.g" );
 
 AnnihilatingOperators( 1, f, 2 );
