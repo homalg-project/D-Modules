@@ -6,7 +6,7 @@
 ##  [ x, y ]
 ##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
-##  gap> BasisOfAnnihilatingOperators( 1, f, 1 );
+##  gap> BasisOfAnnihilatingOperators( 1, 1, f );
 ##  <A non-zero right regular 4 x 1 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, 
@@ -15,7 +15,7 @@
 ##    256*y^4*Dx-256*y^4*Dy-500*y^3*Dx-256*x^3*Dy+64*x^2*y*Dy-80*x*y^2*Dy+100*y^3*\
 ##  Dy-1024*y^3+15625*x*y*Dx+500*x^2*Dy-625*x*y*Dy+12500*y^2*Dy+62500*y, 
 ##    x*y^4*Dy+y^5*Dy+x^4*Dy+4*x*y^3+5*y^4 ]
-##  gap> BasisOfAnnihilatingOperators( 1, f, 2 );
+##  gap> BasisOfAnnihilatingOperators( 2, 1, f );
 ##  <A non-zero right regular 5 x 1 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, 
@@ -27,7 +27,7 @@
 ##    256*y^4*Dx-256*y^4*Dy-500*y^3*Dx-256*x^3*Dy+64*x^2*y*Dy-80*x*y^2*Dy+100*y^3*\
 ##  Dy-1024*y^3+15625*x*y*Dx+500*x^2*Dy-625*x*y*Dy+12500*y^2*Dy+62500*y, 
 ##    x*y^4*Dy+y^5*Dy+x^4*Dy+4*x*y^3+5*y^4 ]
-##  gap> BasisOfAnnihilatingOperators( 1, f, 3 );
+##  gap> BasisOfAnnihilatingOperators( 3, 1, f );
 ##  <A non-zero right regular 5 x 1 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 4*x^2*Dx+5*x*y*Dx+3*x*y*Dy+4*y^2*Dy+16*x+20*y, 
@@ -44,4 +44,4 @@
 
 Read( "../Reiffen_data.g" );
 
-BasisOfAnnihilatingOperators( 1, f, 2 );
+BasisOfAnnihilatingOperators( 2, 1, f );

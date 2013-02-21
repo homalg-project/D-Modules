@@ -19,13 +19,13 @@
 # basic operations:
 
 DeclareOperation( "NumeratorOfDifferentialAction",
-        [ IsRingElement, IsRingElement, IsList ] );
+        [ IsList, IsRingElement, IsRingElement ] );
 
 DeclareOperation( "NumeratorOfDifferentialAction",
-        [ IsRingElement, IsRingElement, IsInt ] );
+        [ IsInt, IsRingElement, IsRingElement ] );
 
 DeclareOperation( "NumeratorOfDifferentialAction",
-        [ IsString, IsInt, IsHomalgRing ] );
+        [ IsInt, IsString, IsHomalgRing ] );
 
 ####################################
 #

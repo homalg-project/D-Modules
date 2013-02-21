@@ -1,6 +1,6 @@
 Read( "Reiffen_data.g" );
 
-Ann := AnnihilatorOfPower( f, "s", 3 );
+Ann := AnnihilatorOfPower( 3, f, "s" );
 
 Ds := HomalgRing( Ann );
 

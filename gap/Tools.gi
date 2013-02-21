@@ -120,9 +120,9 @@ end );
 ##
 InstallMethod( NumeratorOfDifferentialAction,
         "for strings",
-        [ IsString, IsString, IsList, IsString, IsHomalgRing ],
+        [ IsList, IsString, IsString, IsString, IsHomalgRing ],
         
-  function( numer, denom, monomial, arguments, R )
+  function( monomial, numer, denom, arguments, R )
     local RP, tot;
     
     RP := homalgTable( R );
@@ -131,7 +131,7 @@ InstallMethod( NumeratorOfDifferentialAction,
         Error( "could not find a procedure called NumeratorOfDifferentialAction in the homalgTable of the ring\n" );
     fi;
     
-    tot := RP!.NumeratorOfDifferentialAction( numer, denom, monomial, arguments, R );
+    tot := RP!.NumeratorOfDifferentialAction( monomial, numer, denom, arguments, R );
     
     tot := HomalgRingElement( tot, R );
     
@@ -142,9 +142,9 @@ end );
 ##
 InstallMethod( NumeratorOfDifferentialAction,
         "for strings",
-        [ IsString, IsInt, IsString, IsString, IsHomalgRing ],
+        [ IsInt, IsString, IsString, IsString, IsHomalgRing ],
         
-  function( section, order, arguments, multiplier, R )
+  function( order, section, arguments, multiplier, R )
     local RP, tot;
     
     RP := homalgTable( R );
@@ -153,7 +153,7 @@ InstallMethod( NumeratorOfDifferentialAction,
         Error( "could not find a procedure called NumeratorOfDifferentialActionByOrder in the homalgTable of the ring\n" );
     fi;
     
-    tot := RP!.NumeratorOfDifferentialActionByOrder( section, order, arguments, multiplier, R );
+    tot := RP!.NumeratorOfDifferentialActionByOrder( order, section, arguments, multiplier, R );
     
     return tot;
     

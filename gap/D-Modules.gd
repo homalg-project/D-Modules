@@ -38,31 +38,31 @@ DeclareAttribute( "AssociatedOrderFilteredRing",
 # basic operations:
 
 DeclareOperation( "CoefficientsOfAnnihilatingOperators",
-        [ IsRingElement, IsRingElement, IsInt ] );
+        [ IsInt, IsRingElement, IsRingElement ] );
 
 DeclareOperation( "CoefficientsOfAnnihilatingOperators",
-        [ IsString, IsInt, IsHomalgRing ] );
+        [ IsInt, IsString, IsHomalgRing ] );
 
 DeclareOperation( "AnnihilatingOperators",
-        [ IsRingElement, IsRingElement, IsInt ] );
+        [ IsInt, IsRingElement, IsRingElement ] );
 
 DeclareOperation( "AnnihilatingOperators",
-        [ IsString, IsInt, IsHomalgRing ] );
+        [ IsInt, IsString, IsHomalgRing ] );
 
 DeclareOperation( "BasisOfAnnihilatingOperators",
-        [ IsRingElement, IsRingElement, IsInt ] );
+        [ IsInt, IsRingElement, IsRingElement ] );
 
 DeclareOperation( "BasisOfAnnihilatingOperators",
-        [ IsString, IsInt, IsHomalgRing ] );
+        [ IsInt, IsString, IsHomalgRing ] );
 
 DeclareOperation( "Annihilator",
-        [ IsRingElement, IsRingElement, IsInt ] );
+        [ IsInt, IsRingElement, IsRingElement ] );
 
 DeclareOperation( "Annihilator",
-        [ IsString, IsInt, IsHomalgRing ] );
+        [ IsInt, IsString, IsHomalgRing ] );
 
 DeclareOperation( "AnnihilatorOfPower",
-        [ IsRingElement, IsObject, IsInt ] );
+        [ IsInt, IsRingElement, IsObject ] );
 
 DeclareOperation( "OrderOfFirstEquality",
         [ IsRingElement, IsRingElement ] );

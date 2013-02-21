@@ -15,7 +15,7 @@ f := PlaneCurve( 2, 3, 4, 5 );
 
 LoadPackage( "D-Modules" );
 
-Ann := AnnihilatorOfPower( f, "s", 1 );
+Ann := AnnihilatorOfPower( 1, f, "s" );
 
 Ds := HomalgRing( Ann );
 

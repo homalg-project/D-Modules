@@ -146,7 +146,7 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
               end,
             
             NumeratorOfDifferentialAction :=
-              function( numer, denom, monomial, arguments, R )
+              function( monomial, numer, denom, arguments, R )
                 local section, order;
                 
                 section := Concatenation( numer, "/", denom );
@@ -165,7 +165,7 @@ InstallValue( D_ModulesHomalgTableForMapleHomalgTools,
               end,
             
             NumeratorOfDifferentialActionByOrder :=
-              function( section, order, arguments, multiplier, R )
+              function( order, section, arguments, multiplier, R )
                 local stream, v;
                 
                 stream := homalgStream( R );

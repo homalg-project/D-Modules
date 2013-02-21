@@ -9,7 +9,7 @@ f := x;
 
 LoadPackage( "D-Modules" );
 
-Ann := AnnihilatorOfPower( f, "s", 1 );
+Ann := AnnihilatorOfPower( 1, f, "s" );
 
 Ds := HomalgRing( Ann );
 

@@ -14,7 +14,7 @@ f := x*y^5+x^3*y^2+x^4*y;
 
 LoadPackage( "D-Modules" );
 
-Ann := AnnihilatorOfPower( f, "s", 2 );
+Ann := AnnihilatorOfPower( 2, f, "s" );
 
 Ds := HomalgRing( Ann );
 

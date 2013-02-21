@@ -16,17 +16,17 @@
 
 ##  <#GAPDoc Label="NumeratorOfDifferentialAction:der">
 ##  <ManSection>
-##    <Oper Arg="f,g,der" Name="NumeratorOfDifferentialAction" Label="given a list of variables"/>
+##    <Oper Arg="der,f,g" Name="NumeratorOfDifferentialAction" Label="given a list of variables"/>
 ##    <Description>
 ##      <#Include Label="NumeratorOfDifferentialAction:der_example">
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 InstallMethod( NumeratorOfDifferentialAction,
-        "for two ring elements and list of variables",
-        [ IsRingElement, IsHomalgRingElement, IsList ],
+        "for a list of variables and two ring elements",
+        [ IsList, IsRingElement, IsHomalgRingElement ],
         
-  function( f, g, der )
+  function( der, f, g )
     local A;
     
     A := HomalgRing( g );
@@ -36,16 +36,16 @@ InstallMethod( NumeratorOfDifferentialAction,
         g := g / A;
     fi;
     
-    return NumeratorOfDifferentialAction( f / A, g, der );
+    return NumeratorOfDifferentialAction( der, f / A, g );
     
 end );
 
 ##
 InstallMethod( NumeratorOfDifferentialAction,
-        "for two ring elements and list of variables",
-        [ IsHomalgRingElement, IsRingElement, IsList ],
+        "for a list of variables and two ring elements",
+        [ IsList, IsHomalgRingElement, IsRingElement ],
         
-  function( f, g, der )
+  function( der, f, g )
     local A, B, ivar, R, f_g, var;
     
     A := HomalgRing( f );
@@ -75,37 +75,37 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     f := Concatenation( "(", String( f ), ")" );
     
-    return NumeratorOfDifferentialAction( f, g, der, ivar, R ) / B;
+    return NumeratorOfDifferentialAction( der, f, g, ivar, R ) / B;
     
 end );
 
 ##  <#GAPDoc Label="NumeratorOfDifferentialAction:ord">
 ##  <ManSection>
-##    <Oper Arg="f,g,der" Name="NumeratorOfDifferentialAction" Label="given an order"/>
+##    <Oper Arg="order,f,g" Name="NumeratorOfDifferentialAction" Label="given an order"/>
 ##    <Description>
 ##      <#Include Label="NumeratorOfDifferentialAction:ord_example">
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 InstallMethod( NumeratorOfDifferentialAction,
-        "for two ring elements and an integer",
-        [ IsRingElement, IsHomalgRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsRingElement, IsHomalgRingElement ],
         
-  function( f, g, order )
+  function( order, f, g )
     local A;
     
     A := HomalgRing( g );
     
-    return NumeratorOfDifferentialAction( f / A, g, order );
+    return NumeratorOfDifferentialAction( order, f / A, g );
     
 end );
 
 ##
 InstallMethod( NumeratorOfDifferentialAction,
-        "for two ring elements and an integer",
-        [ IsHomalgRingElement, IsRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsHomalgRingElement, IsRingElement ],
         
-  function( f, g, order )
+  function( order, f, g )
     local A, B, ivar, monomials, gg;
     
     A := HomalgRing( f );
@@ -131,16 +131,16 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     gg := g / BaseRing( A );
     
-    return List( monomials, m ->  gg^(order - Length( m )) * NumeratorOfDifferentialAction( f, g, m ) );
+    return List( monomials, m ->  gg^(order - Length( m )) * NumeratorOfDifferentialAction( m, f, g ) );
     
 end );
 
 ##
 InstallMethod( NumeratorOfDifferentialAction,
-        "for string, an integer, and a ring",
-        [ IsString, IsInt, IsHomalgRing ],
+        "for an integer, a string, and a ring",
+        [ IsInt, IsString, IsHomalgRing ],
         
-  function( f, order, A )
+  function( order, f, A )
     local B, ivar, R, coeffs;
     
     B := BaseRing( A );
@@ -159,11 +159,10 @@ InstallMethod( NumeratorOfDifferentialAction,
     
     R := AssociatedRingForInjectiveModules( A );
     
-    coeffs := NumeratorOfDifferentialAction( f, order, ivar, f, R );
+    coeffs := NumeratorOfDifferentialAction( order, f, ivar, f, R );
     
     coeffs := SplitString( coeffs, "," );
     
     return List( coeffs, c -> c / B );
     
 end );
-

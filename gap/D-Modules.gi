@@ -43,20 +43,20 @@ end );
 
 ##  <#GAPDoc Label="CoefficientsOfAnnihilatingOperators">
 ##  <ManSection>
-##    <Oper Arg="f,g,order" Name="CoefficientsOfAnnihilatingOperators"/>
+##    <Oper Arg="order,f,g" Name="CoefficientsOfAnnihilatingOperators"/>
 ##    <Description>
 ##      <#Include Label="CoefficientsOfAnnihilatingOperators:example">
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 InstallMethod( CoefficientsOfAnnihilatingOperators,
-        "for two ring elements and an integer",
-        [ IsRingElement, IsRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsRingElement, IsRingElement ],
         
-  function( f, g, order )
+  function( order, f, g )
     local numerator, B;
     
-    numerator := NumeratorOfDifferentialAction( f, g, order );
+    numerator := NumeratorOfDifferentialAction( order, f, g );
     
     B := HomalgRing( numerator[1] );
     
@@ -68,13 +68,13 @@ end );
 
 ##
 InstallMethod( CoefficientsOfAnnihilatingOperators,
-        "for string, an integer, and a ring",
-        [ IsString, IsInt, IsHomalgRing ],
+        "for an integer, a string, and a ring",
+        [ IsInt, IsString, IsHomalgRing ],
         
-  function( f, order, A )
+  function( order, f, A )
     local numerator, B;
     
-    numerator := NumeratorOfDifferentialAction( f, order, A );
+    numerator := NumeratorOfDifferentialAction( order, f, A );
     
     B := BaseRing( A );
     
@@ -86,17 +86,17 @@ end );
 
 ##  <#GAPDoc Label="AnnihilatingOperators">
 ##  <ManSection>
-##    <Oper Arg="f,g,order" Name="AnnihilatingOperators"/>
+##    <Oper Arg="order,f,g" Name="AnnihilatingOperators"/>
 ##    <Description>
 ##      <#Include Label="AnnihilatingOperators:example">
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 InstallMethod( AnnihilatingOperators,
-        "for two ring elements and an integer",
-        [ IsRingElement, IsHomalgRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsRingElement, IsHomalgRingElement ],
         
-  function( f, g, order )
+  function( order, f, g )
     local A;
     
     A := HomalgRing( g );
@@ -106,16 +106,16 @@ InstallMethod( AnnihilatingOperators,
         g := g / A;
     fi;
     
-    return AnnihilatingOperators( f / A, g, order );
+    return AnnihilatingOperators( order, f / A, g );
     
 end );
 
 ##
 InstallMethod( AnnihilatingOperators,
-        "for two ring elements and an integer",
-        [ IsHomalgRingElement, IsRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsHomalgRingElement, IsRingElement ],
         
-  function( f, g, order )
+  function( order, f, g  )
     local A, dvar, monomials, coeffs;
     
     A := HomalgRing( f );
@@ -137,7 +137,7 @@ InstallMethod( AnnihilatingOperators,
     
     monomials := HomalgMatrix( monomials, Length( monomials ), 1, A );
     
-    coeffs := CoefficientsOfAnnihilatingOperators( f, g, order );
+    coeffs := CoefficientsOfAnnihilatingOperators( order, f, g );
     
     coeffs := A * coeffs;
     
@@ -147,10 +147,10 @@ end );
 
 ##
 InstallMethod( AnnihilatingOperators,
-        "for string, an integer, and a ring",
-        [ IsString, IsInt, IsHomalgRing ],
+        "for an integer, a string, and a ring",
+        [ IsInt, IsString, IsHomalgRing ],
         
-  function( f, order, A )
+  function( order, f, A )
     local dvar, monomials, coeffs;
     
     dvar := IndeterminateDerivationsOfRingOfDerivations( A );
@@ -165,7 +165,7 @@ InstallMethod( AnnihilatingOperators,
     
     monomials := HomalgMatrix( monomials, Length( monomials ), 1, A );
     
-    coeffs := CoefficientsOfAnnihilatingOperators( f, order, A );
+    coeffs := CoefficientsOfAnnihilatingOperators( order, f, A );
     
     coeffs := A * coeffs;
     
@@ -175,65 +175,65 @@ end );
 
 ##  <#GAPDoc Label="BasisOfAnnihilatingOperators">
 ##  <ManSection>
-##    <Oper Arg="f,g,order" Name="BasisOfAnnihilatingOperators"/>
+##    <Oper Arg="order,f,g" Name="BasisOfAnnihilatingOperators"/>
 ##    <Description>
 ##      <#Include Label="BasisOfAnnihilatingOperators:example">
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 InstallMethod( BasisOfAnnihilatingOperators,
-        "for two ring elements and an integer",
-        [ IsRingElement, IsRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsRingElement, IsRingElement ],
         
-  function( f, g, order )
+  function( order, f, g )
     
-    return BasisOfRows( AnnihilatingOperators( f, g, order ) );
+    return BasisOfRows( AnnihilatingOperators( order, f, g ) );
     
 end );
 
 ##
 InstallMethod( BasisOfAnnihilatingOperators,
-        "for string, an integer, and a ring",
-        [ IsString, IsInt, IsHomalgRing ],
+        "for an integer, a string, and a ring",
+        [ IsInt, IsString, IsHomalgRing ],
         
-  function( f, order, A )
+  function( order, f, A )
     
-    return BasisOfRows( AnnihilatingOperators( f, order, A ) );
+    return BasisOfRows( AnnihilatingOperators( order, f, A ) );
     
 end );
 
 ##
 InstallMethod( Annihilator,
-        "for two ring elements and an integer",
-        [ IsRingElement, IsRingElement, IsInt ],
+        "for an integer and two ring elements",
+        [ IsInt, IsRingElement, IsRingElement ],
         
-  function( f, g, order )
+  function( order, f, g )
     
     ## don't use BasisOfAnnihilatingOperators as it could trigger
     ## a huge computation that we might not even need
-    return LeftSubmodule( AnnihilatingOperators( f, g, order ) );
+    return LeftSubmodule( AnnihilatingOperators( order, f, g ) );
     
 end );
 
 ##
 InstallMethod( Annihilator,
-        "for string, an integer, and a ring",
-        [ IsString, IsInt, IsHomalgRing ],
+        "for an integer, a string, and a ring",
+        [ IsInt, IsString, IsHomalgRing ],
         
-  function( f, order, A )
+  function( order, f, A )
     
     ## don't use BasisOfAnnihilatingOperators as it could trigger
     ## a huge computation that we might not even need
-    return LeftSubmodule( AnnihilatingOperators( f, order, A ) );
+    return LeftSubmodule( AnnihilatingOperators( order, f, A ) );
     
 end );
 
 ##
 InstallMethod( AnnihilatorOfPower,
-        "for a ring element, an object, and an integer",
-        [ IsRingElement, IsObject, IsInt ],
+        "for an integer, a ring element, and an object",
+        [ IsInt, IsRingElement, IsObject ],
         
-  function( f, power, order )
+  function( order, f, power )
     local R, k, ks, A;
     
     R := HomalgRing( f );
@@ -263,7 +263,7 @@ InstallMethod( AnnihilatorOfPower,
     
     f := Concatenation( "(", String( f ), ")^(", String( power ), ")" );
     
-    return Annihilator( f, order, A );
+    return Annihilator( order, f, A );
     
 end );
 
@@ -282,13 +282,13 @@ InstallMethod( OrderOfFirstEquality,
   function( f, g )
     local L, o;
     
-    L := List( [ 1, 2 ], o -> Annihilator( f, g, o ) );
+    L := List( [ 1, 2 ], o -> Annihilator( o, f, g ) );
     
     o := Length( L );
     
     while not IsSubset( L[o-1], L[o] ) do
         o := o + 1;
-        Add( L, Annihilator( f, g, o ) );
+        Add( L, Annihilator( o, f, g ) );
     od;
     
     return o - 1;

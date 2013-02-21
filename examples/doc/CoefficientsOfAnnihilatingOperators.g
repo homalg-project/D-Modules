@@ -6,7 +6,7 @@
 ##  [ x, y ]
 ##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
-##  gap> CoefficientsOfAnnihilatingOperators( 1, f, 2 );
+##  gap> CoefficientsOfAnnihilatingOperators( 2, 1, f );
 ##  <A non-zero 5 x 6 matrix over an external ring>
 ##  gap> EntriesOfHomalgMatrix( last );
 ##  [ 16, 24*x+25*y, 3*y, 4*x^2+5*x*y, 3*x*y+4*y^2, 0, 20, 5*x, 19*x+28*y, 0, 
@@ -23,4 +23,4 @@
 
 Read( "../Reiffen_data.g" );
 
-CoefficientsOfAnnihilatingOperators( 1, f, 2 );
+CoefficientsOfAnnihilatingOperators( 2, 1, f );

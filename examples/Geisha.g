@@ -9,7 +9,7 @@ f := x^2*y*z + x^2*z^2 - y^3*z - y^3;
 
 LoadPackage( "D-Modules" );
 
-Ann := AnnihilatorOfPower( f, "s", 1 );
+Ann := AnnihilatorOfPower( 1, f, "s" );
 
 Ds := HomalgRing( Ann );
 
