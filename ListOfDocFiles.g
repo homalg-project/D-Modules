@@ -1,4 +1,5 @@
 list := [
+         "../gap/AutoDocEntries.g",
          "../gap/D-ModulesForHomalg.gd",
          "../gap/D-ModulesForHomalg.gi",
          "../gap/DifferentialAction.gd",

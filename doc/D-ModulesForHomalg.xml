@@ -65,6 +65,7 @@
 <#Include SYSTEM "install.xml">
 <#Include SYSTEM "D-Modules.xml">
 <#Include SYSTEM "Tools.xml">
+<#Include SYSTEM "AutoDocMainFile.xml">
 </Body>
 
 <#Include SYSTEM "appendix.xml">
