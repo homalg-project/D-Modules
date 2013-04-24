@@ -3,7 +3,7 @@ LoadPackage( "GradedRingForHomalg" );
 Q := HomalgFieldOfRationalsInDefaultCAS( );
 R := Q * "x,y";
 
-ExportIndeterminates( R );
+AssignGeneratorVariables( R );
 
 f_pq := "x^p + y*y^(q-1) + x*y^(q-1)";
 

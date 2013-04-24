@@ -3,7 +3,7 @@ LoadPackage( "GradedRingForHomalg" );
 Q := HomalgFieldOfRationalsInDefaultCAS( );
 R := Q * "x,y";
 
-ExportIndeterminates( R );
+AssignGeneratorVariables( R );
 
 f := y^2-x^3;
 

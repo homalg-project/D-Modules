@@ -27,7 +27,7 @@ Subtitle := "A homalg based package for D-modules",
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
-Version := "2013.03.22",
+Version := "2013.04.16",
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
 
@@ -247,7 +247,7 @@ Dependencies := rec(
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
   NeededOtherPackages := [
-                [ "MatricesForHomalg", ">= 2012.10.25" ],
+                [ "MatricesForHomalg", ">= 2013.04.16" ],
                 [ "HomalgToCAS", ">= 2011.06.29" ],
                 [ "RingsForHomalg", ">= 2012.10.25" ],
                 [ "Modules", ">= 2012.06.28" ],

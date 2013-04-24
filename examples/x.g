@@ -3,7 +3,7 @@ LoadPackage( "GradedRingForHomalg" );
 Q := HomalgFieldOfRationalsInDefaultCAS( );
 R := Q * "x";
 
-ExportIndeterminates( R );
+AssignGeneratorVariables( R );
 
 f := x;
 

@@ -2,8 +2,10 @@
 ##  <Example><![CDATA[
 ##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
 ##  Q[x,y]
-##  gap> ExportIndeterminates( R );
-##  [ x, y ]
+##  gap> AssignGeneratorVariables( R );
+##  #I  Global variable `x' is already defined and will be overwritten
+##  #I  Global variable `y' is already defined and will be overwritten
+##  #I  Assigned the global variables [ x, y ]
 ##  gap> Reiffen := function( p, q )
 ##  >    if q >= p + 1 and p + 1 >= 5 then
 ##  >        return ( x^p + y*y^(q-1) + x*y^(q-1) );

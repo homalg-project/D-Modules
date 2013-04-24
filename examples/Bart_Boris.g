@@ -8,7 +8,7 @@ LoadPackage( "GradedRingForHomalg" );
 Q := HomalgFieldOfRationalsInDefaultCAS( );
 R := Q * "x,y";
 
-ExportIndeterminates( R );
+AssignGeneratorVariables( R );
 
 f := x*y^5+x^3*y^2+x^4*y;
 

@@ -2,8 +2,8 @@
 ##  <Example><![CDATA[
 ##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
 ##  Q[x,y]
-##  gap> ExportIndeterminates( R );
-##  [ x, y ]
+##  gap> AssignGeneratorVariables( R );
+##  #I  Assigned the global variables [ x, y ]
 ##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
 ##  gap> CoefficientsOfAnnihilatingOperators( 2, 1, f );
