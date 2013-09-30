@@ -307,6 +307,10 @@ InstallMethod( AssociatedOrderGradedModule,
     
     R := AssociatedOrderFilteredRing( A );
     
+    ## did not speed up computations when considering
+    ## Paco's favorite non-free arrangement in dim 4
+    #OnBasisOfPresentation( M );
+    
     return AssociatedGradedModule( R * M );
     
 end );
