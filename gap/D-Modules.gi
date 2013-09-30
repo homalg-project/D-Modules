@@ -254,7 +254,7 @@ InstallMethod( AnnihilatorOfPower,
         if not IsBound( R!.(power) ) then
             k := CoefficientsRing( R );
             ks := k * power;
-            R!.(power) := ks * IndeterminatesOfPolynomialRing( R );
+            R!.(power) := ks * List( IndeterminatesOfPolynomialRing( R ), Name );
         fi;
         R := R!.(power);
     fi;
