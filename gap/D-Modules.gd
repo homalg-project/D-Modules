@@ -67,6 +67,12 @@ DeclareOperation( "Annihilator",
 DeclareOperation( "AnnihilatorOfPower",
         [ IsInt, IsRingElement, IsObject ] );
 
+DeclareOperation( "AnnihilatorOfPower",
+        [ IsInt, IsDivisor, IsObject ] );
+
+DeclareOperation( "AnnihilatorOfPower",
+        [ IsInt, IsDivisor ] );
+
 DeclareOperation( "OrderOfFirstEquality",
         [ IsRingElement, IsRingElement ] );
 

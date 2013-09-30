@@ -267,6 +267,34 @@ InstallMethod( AnnihilatorOfPower,
     
 end );
 
+##
+InstallMethod( AnnihilatorOfPower,
+        "for an integer, a divisor, and an object",
+        [ IsInt, IsDivisorRep, IsObject ],
+        
+  function( order, D, power )
+    local f;
+    
+    f := DefiningPolynomial( D );
+    
+    return AnnihilatorOfPower( order, f, power );
+    
+end );
+
+##
+InstallMethod( AnnihilatorOfPower,
+        "for an integer, a divisor",
+        [ IsInt, IsDivisorRep ],
+        
+  function( order, D )
+    local f;
+    
+    f := DefiningPolynomial( D );
+    
+    return AnnihilatorOfPower( order, f, -1 );
+    
+end );
+
 ##  <#GAPDoc Label="OrderOfFirstEquality">
 ##  <ManSection>
 ##    <Oper Arg="f,g" Name="OrderOfFirstEquality"/>
