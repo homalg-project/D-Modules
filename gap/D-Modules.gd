@@ -27,6 +27,9 @@
 DeclareAttribute( "AssociatedOrderFilteredRing",
         IsHomalgRing );
 
+DeclareAttribute( "AssociatedOrderGradedModule",
+        IsHomalgModule );
+
 ####################################
 #
 # global functions and operations:
@@ -69,9 +72,6 @@ DeclareOperation( "OrderOfFirstEquality",
 
 DeclareOperation( "OrderOfFirstEquality",
         [ IsString, IsHomalgRing ] );
-
-DeclareOperation( "AssociatedOrderGradedModule",
-        [ IsHomalgModule ] );
 
 ####################################
 #
