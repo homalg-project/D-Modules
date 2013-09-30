@@ -30,6 +30,9 @@ DeclareAttribute( "AssociatedOrderFilteredRing",
 DeclareAttribute( "AssociatedOrderGradedModule",
         IsHomalgModule );
 
+DeclareAttribute( "PrimaryIdealOfGrAnn1AtTheOrigin",
+        IsDivisor );
+
 ####################################
 #
 # global functions and operations:
