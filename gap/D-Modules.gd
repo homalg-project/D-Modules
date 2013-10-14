@@ -82,6 +82,9 @@ DeclareOperation( "OrderOfFirstEquality",
 DeclareOperation( "OrderOfFirstEquality",
         [ IsString, IsHomalgRing ] );
 
+DeclareOperation( "FiltrationByOrder",
+        [ IsInt, IsHomalgModule ] );
+
 ####################################
 #
 # synonyms:

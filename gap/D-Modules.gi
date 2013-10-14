@@ -390,3 +390,75 @@ InstallMethod( PrimaryIdealOfGrAnn1AtTheOrigin,
     return pr[1];
     
 end );
+
+##
+InstallMethod( FiltrationByOrder,
+        "for an integer and a homalg module",
+        [ IsInt, IsFinitelyPresentedModuleRep ],
+        
+  function( order, M )
+    local W, R, der, mon, mat, symb, range, FiM,
+          gens, prefilt, i, map, degrees, filt;
+    
+    W := HomalgRing( M );
+    R := BaseRing( W );
+    
+    der := IndeterminateDerivationsOfRingOfDerivations( W );
+    
+    mon := List( [ 0 .. order ],
+                 o -> UnorderedTuples( [ 1 .. Length( der ) ], o ) );
+    
+    mon := List( mon, a -> List( a, m -> Product( der{m} ) ) );
+    mon[1][1] := One( W );
+    
+    W := AssociatedOrderFilteredRing( W );
+    
+    M := W * M;
+    
+    mat := Concatenation( mon );
+    
+    if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
+        mat := HomalgMatrix( mat, Length( mat ), 1, W );
+        mat := SyzygiesGeneratorsOfRows( mat, MatrixOfRelations( M ) );
+    else
+        mat := HomalgMatrix( mat, 1, Length( mat ), W );
+        mat := SyzygiesGeneratorsOfColumns( mat, MatrixOfRelations( M ) );
+    fi;
+    
+    symb := MatrixOfSymbols( mat );
+    if not IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
+        symb := Involution( symb );
+    fi;
+    symb := EntriesOfHomalgMatrixAsListList( symb );
+    
+    range := Filtered( [ 1 .. NrRows( mat ) ],
+                     r -> ForAll( symb[r], d -> Degree( d ) < 1 ) );
+
+    if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
+        mat := CertainRows( mat, range );
+        FiM := LeftPresentation( mat );
+    else
+        mat := CertainColumns( mat, range );
+        FiM := RightPresentation( mat );
+    fi;
+    
+    gens := GeneratingElements( FiM );
+    
+    prefilt := [ ];
+    
+    for i in [ 2 .. Length( mon ) ] do
+        map := gens{[ 1 .. Sum( List( mon{[ 1 .. i ]}, Length ) ) ]};
+        map := List( map, UnderlyingMorphism );
+        map := Iterated( map, CoproductMorphism );
+        Add( prefilt, map );
+    od;
+    
+    degrees := [ 1 .. order ];
+    
+    filt := rec( degrees := degrees, tower := true );
+    
+    Perform( degrees, function( i ) filt.(String( i )) := prefilt[i]; end );
+    
+    return HomalgAscendingFiltration( filt );
+    
+end );
