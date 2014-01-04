@@ -11,6 +11,8 @@ public_html
 public_html.version
 doc/*.pdf
 doc/*.html
+doc/*.css
+doc/*.js
 doc/*.txt
 doc/*.six
 doc/*Bib.xml
@@ -28,6 +30,7 @@ doc/*.tex
 doc/*.toc
 doc/*.out
 doc/manual.lab
-*.DS_Store
 doc/AutoDocMainFile.xml
-gap/AutoDocEntries.g
+doc/D-ModulesForHomalg.xml
+doc/title.xml
+*.DS_Store
