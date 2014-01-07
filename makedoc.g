@@ -44,6 +44,6 @@ AutoDoc(
 );
 
 # Create VERSION file for "make towww"
-PrintTo( "VERSION", PackageInfo( "AutoDocTestPackage" )[1].Version );
+PrintTo( "VERSION", PackageInfo( "D-Modules" )[1].Version );
 
 QUIT;
