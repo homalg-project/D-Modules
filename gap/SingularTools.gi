@@ -22,7 +22,7 @@ InstallValue( D_ModulesMacrosForSingular,
     
     _Identifier := "D-Modules",
     
-    $D_Modules_init := "\n\
+    ("$D_Modules_init") := "\n\
 LIB \"bfun.lib\";\n\
 \n\n",
     
