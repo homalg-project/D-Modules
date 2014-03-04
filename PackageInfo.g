@@ -27,7 +27,7 @@ Subtitle := "A homalg based package for D-modules",
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
-Version := "2014.02.04",
+Version := "2014.03.05",
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
 

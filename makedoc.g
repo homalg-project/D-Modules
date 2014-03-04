@@ -40,6 +40,11 @@ AutoDoc(
         gapdoc := rec(
             main := "D-ModulesForHomalg",
         ),
+        maketest := rec(
+                    commands := [   "LoadPackage( \"D-Modules\" );",
+                                    "LoadPackage( \"IO_ForHomalg\" );",
+                                    "HOMALG_IO.show_banners := false;",
+                                    "HOMALG_IO.use_common_stream := true;" ] )
     )
 );
 
