@@ -3,6 +3,8 @@
 ##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
 ##  Q[x,y]
 ##  gap> AssignGeneratorVariables( R );
+##  #I  Global variable `x' is already defined and will be overwritten
+##  #I  Global variable `y' is already defined and will be overwritten
 ##  #I  Assigned the global variables [ x, y ]
 ##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
@@ -26,7 +28,9 @@
 ##  gap> R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y";
 ##  Q[x,y]
 ##  gap> AssignGeneratorVariables( R );
-##  [ x, y ]
+##  #I  Global variable `x' is already defined and will be overwritten
+##  #I  Global variable `y' is already defined and will be overwritten
+##  #I  Assigned the global variables [ x, y ]
 ##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
 ##  gap> NumeratorOfDifferentialAction( 2, 1, f );
