@@ -20,10 +20,16 @@ Dz  \
 M := DiagMat( [ M1, M2, M3 ] );
 M := ShallowCopy( M );	## copy M before setting entries
 SetIsMutableMatrix( M, true );
-SetMatElm( M, 1, 2, "1" );
-SetMatElm( M, 2, 3, "1" );
-SetMatElm( M, 3, 3, "1" );
+SetMatElm( M, 1, 2, "-1" );
+SetMatElm( M, 2, 3, "-1" );
+SetMatElm( M, 3, 3, "-1" );
 MakeImmutable( M );
+
+tau0 := HomalgMatrix( "[ \
+1, 0, 0, \
+0,-1, 0, \
+0, 0, 1  \
+]", 3, 3, A3 );
 
 tau1 := HomalgMatrix( "[ \
 1, Dx, Dz, \
@@ -43,7 +49,7 @@ tau3 := HomalgMatrix( "[ \
 0, -1, 1  \
 ]", 3, 3, A3 );
 
-tau := tau1 * tau2 * tau3;
+tau := tau0 * tau1 * tau2 * tau3;
 
 LoadPackage( "Modules" );
 
