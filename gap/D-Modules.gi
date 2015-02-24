@@ -35,6 +35,38 @@ InstallMethod( AssociatedOrderFilteredRing,
     
 end );
 
+##
+InstallMethod( PrimaryIdealOfGrAnn1AtTheOrigin,
+        "for a homalg divisor",
+        [ IsDivisorRep ],
+        
+  function( D )
+    local ann1, grann1, R, m, pr;
+    
+    ann1 := Annihilator1( D );
+    
+    grann1 := AssociatedOrderGradedModule( ann1 );
+    
+    R := HomalgRing( grann1 );
+    
+    m := Indeterminates( BaseRing( R ) );
+    m := LeftSubmodule( m );
+    m := R * m;
+    
+    pr := PrimaryDecomposition( grann1 );
+    
+    pr := First( pr, a -> a[2] = m );
+    
+    if pr = fail then
+        return fail;
+    fi;
+    
+    SetAssociatedPrimes( pr[1], [ pr[2] ] );
+    
+    return pr[1];
+    
+end );
+
 ####################################
 #
 # methods for operations:
@@ -356,38 +388,6 @@ InstallMethod( AssociatedOrderGradedModule,
     R := AssociatedOrderFilteredRing( A );
     
     return AssociatedGradedModule( R * J );
-    
-end );
-
-##
-InstallMethod( PrimaryIdealOfGrAnn1AtTheOrigin,
-        "for a homalg divisor",
-        [ IsDivisorRep ],
-        
-  function( D )
-    local ann1, grann1, R, m, pr;
-    
-    ann1 := Annihilator1( D );
-    
-    grann1 := AssociatedOrderGradedModule( ann1 );
-    
-    R := HomalgRing( grann1 );
-    
-    m := Indeterminates( BaseRing( R ) );
-    m := LeftSubmodule( m );
-    m := R * m;
-    
-    pr := PrimaryDecomposition( grann1 );
-    
-    pr := First( pr, a -> a[2] = m );
-    
-    if pr = fail then
-        return fail;
-    fi;
-    
-    SetAssociatedPrimes( pr[1], [ pr[2] ] );
-    
-    return pr[1];
     
 end );
 
