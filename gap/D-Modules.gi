@@ -58,7 +58,7 @@ InstallMethod( PrimaryIdealOfGrAnn1AtTheOrigin,
     pr := First( pr, a -> a[2] = m );
     
     if pr = fail then
-        return fail;
+        return m^0;
     fi;
     
     SetAssociatedPrimes( pr[1], [ pr[2] ] );
