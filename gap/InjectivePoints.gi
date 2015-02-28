@@ -132,6 +132,17 @@ InstallMethod( AssociatedSystem,
 end );
 
 ##
+InstallMethod( AssociatedSystem,
+        "for a homalg module",
+        [ IsHomalgModule and IsHomalgLeftObjectOrMorphismOfLeftObjects ],
+        
+  function( M )
+    
+    return MatrixOfRelations( RelationsOfModule( M ) * GeneratorsOfModule( M ) );
+    
+end );
+
+##
 InstallMethod( SolutionSpace,
         "for a homalg matrix and a homalg module",
         [ IsHomalgMatrix, IsHomalgModule ],

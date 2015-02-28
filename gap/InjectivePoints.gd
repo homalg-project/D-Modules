@@ -78,6 +78,9 @@ DeclareOperation( "AssociatedSystem",
 DeclareOperation( "AssociatedSystem",
         [ IsHomalgMap, IsHomalgModule ] );
 
+DeclareOperation( "AssociatedSystem",
+        [ IsHomalgModule ] );
+
 DeclareOperation( "SolutionSpace",
         [ IsHomalgMatrix, IsHomalgModule ] );
 
