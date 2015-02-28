@@ -57,9 +57,15 @@ InstallMethod( ApplyToSection,
         [ IsHomalgMatrix, IsHomalgMatrix ],
         
   function( mat, u )
-    local R, RP, sec;
+    local R, r, RP, sec;
     
     R := HomalgRing( mat );
+    
+    r := NrRows( mat );
+    
+    if r = 0 then
+        return HomalgZeroMatrix( r, 1, R );
+    fi;
     
     RP := homalgTable( R );
     
@@ -69,7 +75,7 @@ InstallMethod( ApplyToSection,
     
     sec := RP!.ApplyToSection( mat, u );	## the external object
     
-    return HomalgMatrix( sec, NrRows( mat ), 1, R );
+    return HomalgMatrix( sec, r, 1, R );
     
 end );
 
