@@ -143,6 +143,17 @@ InstallMethod( AssociatedSystem,
 end );
 
 ##
+InstallMethod( AssociatedSystem,
+        "for a homalg map",
+        [ IsHomalgMap and IsHomalgLeftObjectOrMorphismOfLeftObjects ],
+        
+  function( phi )
+    
+    return MatrixOfGenerators( MatrixOfMap( phi ) * GeneratorsOfModule( Range( phi ) ) );
+    
+end );
+
+##
 InstallMethod( SolutionSpace,
         "for a homalg matrix and a homalg module",
         [ IsHomalgMatrix, IsHomalgModule ],
