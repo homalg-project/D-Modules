@@ -105,7 +105,7 @@ end );
 
 ##
 InstallMethod( AssociatedSystem,
-        "for a two homalg modules",
+        "for two homalg module",
         [ IsHomalgModule and IsHomalgLeftObjectOrMorphismOfLeftObjects,
           IsHomalgModule and IsHomalgLeftObjectOrMorphismOfLeftObjects ],
         
@@ -119,7 +119,7 @@ end );
 
 ##
 InstallMethod( AssociatedSystem,
-        "for a homalg map and a homalg modules",
+        "for a homalg map and a homalg module",
         [ IsHomalgMap and IsHomalgLeftObjectOrMorphismOfLeftObjects,
           IsHomalgModule and IsHomalgLeftObjectOrMorphismOfLeftObjects ],
         
