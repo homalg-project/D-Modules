@@ -462,3 +462,35 @@ InstallMethod( FiltrationByOrder,
     return HomalgAscendingFiltration( filt );
     
 end );
+
+##
+InstallMethod( PrimaryIdealOfGrAnnOfPowerAtTheOrigin,
+        "for a homalg divisor",
+        [ IsInt, IsDivisorRep ],
+        
+  function( s, D )
+    local anns, granns, R, m, pr;
+    
+    anns := AnnihilatorOfPower( s, D );
+    
+    granns := AssociatedOrderGradedModule( anns );
+    
+    R := HomalgRing( granns );
+    
+    m := Indeterminates( BaseRing( R ) );
+    m := LeftSubmodule( m );
+    m := R * m;
+    
+    pr := PrimaryDecomposition( granns );
+    
+    pr := First( pr, a -> a[2] = m );
+    
+    if pr = fail then
+        return m^0;
+    fi;
+    
+    SetAssociatedPrimes( pr[1], [ pr[2] ] );
+    
+    return pr[1];
+    
+end );

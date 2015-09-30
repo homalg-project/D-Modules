@@ -85,9 +85,11 @@ DeclareOperation( "OrderOfFirstEquality",
 DeclareOperation( "FiltrationByOrder",
         [ IsInt, IsHomalgModule ] );
 
+DeclareOperation( "PrimaryIdealOfGrAnnOfPowerAtTheOrigin",
+        [ IsInt, IsDivisor ] );
+
 ####################################
 #
 # synonyms:
 #
 ####################################
-
