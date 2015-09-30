@@ -88,6 +88,9 @@ DeclareOperation( "FiltrationByOrder",
 DeclareOperation( "PrimaryIdealOfGrAnnOfPowerAtTheOrigin",
         [ IsInt, IsDivisor ] );
 
+DeclareOperation( "SubmoduleOfGrAnnOfPowerAtTheOrigin",
+        [ IsInt, IsDivisor, IsInt, IsInt ] );
+
 ####################################
 #
 # synonyms:

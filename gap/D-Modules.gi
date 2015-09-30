@@ -494,3 +494,29 @@ InstallMethod( PrimaryIdealOfGrAnnOfPowerAtTheOrigin,
     return pr[1];
     
 end );
+
+##
+InstallMethod( SubmoduleOfGrAnnOfPowerAtTheOrigin,
+        "for a homalg divisor",
+        [ IsInt, IsDivisorRep, IsInt, IsInt ],
+        
+  function( order, D, power, l )
+    local anno, granno, R, m, pr;
+    
+    anno := AnnihilatorOfPower( order, D, power );
+    
+    granno := AssociatedOrderGradedModule( anno );
+    
+    R := HomalgRing( granno );
+    
+    m := Indeterminates( BaseRing( R ) );
+    m := List( m, a -> a / R );
+    
+    ## the l-th Frobenius power
+    m := List( m, a -> a^l );
+    
+    m := LeftSubmodule( m );
+    
+    return Hom( FactorObject( m ), FactorObject( granno ) );
+    
+end );
