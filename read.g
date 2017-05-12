@@ -28,3 +28,11 @@ ReadPackage( "D-Modules", "gap/SingularTools.gi" );
 
 ##
 ReadPackage( "D-Modules", "gap/MapleHomalgTools.gi" );
+
+if IsBound( MakeThreadLocal ) then
+    Perform(
+            [
+             "HOMALG_D_Modules",
+             ],
+            MakeThreadLocal );
+fi;
