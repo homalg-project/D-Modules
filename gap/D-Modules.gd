@@ -73,7 +73,7 @@ DeclareOperation( "AnnihilatorOfPower",
 DeclareOperation( "AnnihilatorOfPower",
         [ IsInt, IsDivisor, IsObject ] );
 
-DeclareOperation( "AnnihilatorOfPower",
+DeclareOperation( "Annihilator",
         [ IsInt, IsDivisor ] );
 
 DeclareOperation( "OrderOfFirstEquality",

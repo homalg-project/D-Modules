@@ -314,7 +314,7 @@ InstallMethod( AnnihilatorOfPower,
 end );
 
 ##
-InstallMethod( AnnihilatorOfPower,
+InstallMethod( Annihilator,
         "for an integer, a divisor",
         [ IsInt, IsDivisorRep ],
         
@@ -471,7 +471,7 @@ InstallMethod( PrimaryIdealOfGrAnnOfPowerAtTheOrigin,
   function( o, D )
     local anno, granno, R, m, pr;
     
-    anno := AnnihilatorOfPower( o, D );
+    anno := Annihilator( o, D );
     
     granno := AssociatedOrderGradedModule( anno );
     
