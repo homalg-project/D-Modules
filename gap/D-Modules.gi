@@ -468,20 +468,20 @@ InstallMethod( PrimaryIdealOfGrAnnOfPowerAtTheOrigin,
         "for a homalg divisor",
         [ IsInt, IsDivisorRep ],
         
-  function( s, D )
-    local anns, granns, R, m, pr;
+  function( o, D )
+    local anno, granno, R, m, pr;
     
-    anns := AnnihilatorOfPower( s, D );
+    anno := AnnihilatorOfPower( o, D );
     
-    granns := AssociatedOrderGradedModule( anns );
+    granno := AssociatedOrderGradedModule( anno );
     
-    R := HomalgRing( granns );
+    R := HomalgRing( granno );
     
     m := Indeterminates( BaseRing( R ) );
     m := LeftSubmodule( m );
     m := R * m;
     
-    pr := PrimaryDecomposition( granns );
+    pr := PrimaryDecomposition( granno );
     
     pr := First( pr, a -> a[2] = m );
     
