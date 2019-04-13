@@ -31,6 +31,7 @@ doc/*.toc
 doc/*.out
 doc/manual.lab
 doc/AutoDocMainFile.xml
+doc/_AutoDocMainFile.xml
 doc/D-ModulesForHomalg.xml
 doc/title.xml
 *.DS_Store
