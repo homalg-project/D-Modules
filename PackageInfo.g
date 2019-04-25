@@ -219,9 +219,6 @@ PackageWWWHome := "http://homalg.math.rwth-aachen.de/index.php/unreleased/d-modu
 PackageDoc := rec(
   # use same as in GAP            
   BookName  := "D-Modules",
-  # format/extension can be one of .zoo, .tar.gz, .tar.bz2, -win.zip
-  Archive := 
-    "http://homalg.math.rwth-aachen.de/~barakat/homalg-project/D-Modules/D-Modules.tar.gz",
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
