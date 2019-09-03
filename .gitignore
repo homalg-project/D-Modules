@@ -34,5 +34,6 @@ doc/AutoDocMainFile.xml
 doc/_AutoDocMainFile.xml
 doc/D-ModulesForHomalg.xml
 doc/title.xml
+doc/_Chunks.xml
 *.DS_Store
 maketest.g
