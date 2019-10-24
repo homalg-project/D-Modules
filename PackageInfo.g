@@ -27,7 +27,7 @@ Subtitle := "A homalg based package for D-modules",
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
-Version := "2017.09.18",
+Version := "2017.09.19",
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
 
@@ -179,9 +179,7 @@ PackageInfoURL :=
 ##  Please, use '<span class="pkgname">GAP</span>' and
 ##  '<span class="pkgname">MyPKG</span>' for specifing package names.
 ##  
-# AbstractHTML := "This package provides  a collection of functions for \
-# computing the Smith normal form of integer matrices and some related \
-# utilities.",
+AbstractHTML := "A homalg based package for D-modules",
 #AbstractHTML := 
 #  "The <span class=\"pkgname\">Example</span> package, as its name suggests, \
 #   is an example of how to create a <span class=\"pkgname\">GAP</span> \
