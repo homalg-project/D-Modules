@@ -10,7 +10,6 @@ AutoDoc(
                 "install.xml",
                 "D-Modules.xml",
                 "Tools.xml",
-                "AutoDocMainFile.xml",
             ],
             appendix := [
                 "appendix.xml",
