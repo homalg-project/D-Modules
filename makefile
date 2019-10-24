@@ -15,6 +15,14 @@ clean:
 test:	doc
 	gap maketest.g
 
+test-with-coverage: doc
+	OUTPUT=$$(/usr/bin/time --quiet --format="%U %S" --output=performance.out gap --banner --quitonbreak --cover stats maketest.g 2>&1); \
+	echo "$$OUTPUT"; \
+	! echo "$$OUTPUT" | sed "s/\r//" | grep -v "Running list" | grep -v "^#I  " | grep "" > /dev/null
+	echo 'LoadPackage("profiling"); OutputJsonCoverage("stats", "coverage.json");' | gap
+
+ci-test: test-with-coverage
+
 archive: test
 	(mkdir -p ../tar; cd ..; tar czvf tar/D-Modules.tar.gz --exclude ".DS_Store" --exclude "*~" D-Modules/doc/*.* D-Modules/doc/clean D-Modules/gap/*.{gi,gd} D-Modules/{CHANGES,PackageInfo.g,README,VERSION,init.g,read.g,makedoc.g,makefile,maketest.g} D-Modules/examples/*.g D-Modules/examples/doc/*.g)
 
