@@ -8,9 +8,9 @@
 ##  #I  Assigned the global variables [ x, y ]
 ##  gap> f := x^4+y^5+x*y^4;
 ##  x*y^4+y^5+x^4
-##  gap> AnnihilatingOperators( 2, 1, f );
+##  gap> ann := AnnihilatingOperators( 2, 1, f );
 ##  <An unevaluated 5 x 1 matrix over an external ring>
-##  gap> EntriesOfHomalgMatrix( last );
+##  gap> EntriesOfHomalgMatrix( ann );
 ##  [ 4*x^2*Dx*Dy+5*x*y*Dx*Dy+3*x*y*Dy^2+4*y^2*Dy^2+5*x*Dx+19*x*Dy+28*y*Dy\
 ##  +20, 
 ##    4*x^2*Dx^2+5*x*y*Dx^2+3*x*y*Dx*Dy+4*y^2*Dx*Dy+24*x*Dx+25*y*Dx+3*y*Dy\
